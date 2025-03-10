@@ -1,0 +1,16 @@
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\Test_Assistant.exe
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\Test_Assistant.deps.json
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\Test_Assistant.runtimeconfig.json
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\Test_Assistant.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\Test_Assistant.pdb
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.Form1.resources
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.csproj.GenerateResource.cache
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.GeneratedMSBuildEditorConfig.editorconfig
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.AssemblyInfoInputs.cache
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.AssemblyInfo.cs
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.csproj.CoreCompileInputs.cache
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\refint\Test_Assistant.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.pdb
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.genruntimeconfig.cache
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\ref\Test_Assistant.dll
