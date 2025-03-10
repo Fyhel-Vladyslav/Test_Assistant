@@ -1,4 +1,3 @@
-using Test_Assistant.ImageProcessorModels;
 using Test_Assistant.Models;
 using Test_Assistant.pages;
 using Newtonsoft.Json;
@@ -10,10 +9,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Test_Assistant.ImageProcessorModels;
 using Test_Assistant.Models;
 using Test_Assistant.pages;
-using Test_Assistant;
 using static System.Windows.Forms.LinkLabel;
 
 namespace Test_Assistant
@@ -49,11 +46,6 @@ namespace Test_Assistant
         private static string debugFilePath = ".\\..\\..\\..\\..\\MouseClicks.txt";// Debug file location
         private static string orderFilePath = ".\\..\\..\\..\\..\\order.json";
         private static string screenshotsFilePath = ".\\..\\..\\..\\..\\..\\screenshots";
-
-
-        //private static string debugFilePath = ".\\MouseClicks.txt";// Debug file location
-        //private static string orderFilePath = ".\\order.txt";
-        //private static string screenshotsFilePath = ".\\screenshots";
 
         /// </FILE_PATCHES>
 
@@ -97,13 +89,11 @@ namespace Test_Assistant
         private static Form1 _instanceForm1;
         private FileDataProcessor fileDataProcessor = new FileDataProcessor(orderFilePath);
         public static System.Windows.Forms.Timer _globalTimer;
-        private POINT[] points = new POINT[4];
         private static bool isRecordingClicks = false;
         private static int elapsedPartialSeconds = 0;
         private static FileData prevFileData;
         private static FileData fileData;
-        private static ParseImageProcessor _parseImageProcessor;
-        private static ScreenshotProcessor _screenshotProcessor;
+        private static ImageProcessor _ImageProcessor;
         private CasesPage casesPage;
 
         /// </LOGISTIC_VARIABLES>
@@ -171,8 +161,7 @@ namespace Test_Assistant
             _globalTimer = new System.Windows.Forms.Timer();
             fileData = fileDataProcessor.LoadDataFromFile();
             prevFileData = fileDataProcessor.LoadDataFromFile();
-            _parseImageProcessor = new ParseImageProcessor();
-            _screenshotProcessor = new ScreenshotProcessor();
+            _ImageProcessor = new ImageProcessor();
 
             CreateActionsPanel();
             CreateChecklistPanel();
@@ -186,8 +175,6 @@ namespace Test_Assistant
             _mouseHookID = SetMouseHook(_mouseProc);
             _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
 
-
-
             ActionsPanel.Visible = false;
             ListPanel.Visible = false;
             CasesPanel.Visible = true;
@@ -200,6 +187,11 @@ namespace Test_Assistant
         {
             ActionsPanel = new Panel(); ActionsPanel.Size = new Size(800, 395); ActionsPanel.Location = new Point(0, 30);
             Controls.Add(ActionsPanel);
+
+            var StartRecordButton = new Button(); StartRecordButton.Size = new Size(183, 52); StartRecordButton.Location = new Point(19, 229); StartRecordButton.Text = "Record"; StartRecordButton.Click += buttonStartRecording_Click;
+            var StartOrderButton = new Button(); StartOrderButton.Size = new Size(183, 52); StartOrderButton.Location = new Point(588, 229); StartOrderButton.Text = "Order"; StartOrderButton.Click += buttonStartOrder_Click;
+            ActionsPanel.Controls.Add(StartRecordButton);
+            ActionsPanel.Controls.Add(StartOrderButton);
         }
 
         private void CreateCasesPanel()
@@ -214,7 +206,6 @@ namespace Test_Assistant
 
             // Initialize the FlowLayoutPanel
             casesPage = new CasesPage(fileData);
-
 
             CasesPanel.Controls.Add(casesPage);
         }
@@ -238,12 +229,10 @@ namespace Test_Assistant
         private void CreateLayoutElements()
         {
             DismissButton = new Button(); DismissButton.Size = new Size(183, 52); DismissButton.Location = new Point(19, 429); DismissButton.Text = "Dismiss"; DismissButton.Click += DismissButton_Click;
-            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, 429); SaveButton.Text = "Save"; DismissButton.Click += DismissButton_Click;
+            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, 429); SaveButton.Text = "Save"; SaveButton.Click += SaveButton_Click;
             Controls.Add(DismissButton);
             Controls.Add(SaveButton);
         }
-
-
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -253,11 +242,8 @@ namespace Test_Assistant
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            points[0] = new POINT { x = 0, y = 0 };
-            points[1] = new POINT { x = 0, y = 500 };
-            points[2] = new POINT { x = 500, y = 500 };
-            points[3] = new POINT { x = 500, y = 0 };
         }
+
         private void buttonStartRecording_Click(object sender, EventArgs e)
         {
             isRecordingClicks = true;
@@ -276,8 +262,6 @@ namespace Test_Assistant
                 PerformOrderClicksAsync(fileData.Testcases[0]);
             }
         }
-
-
 
         // Блокуємо натискання Enter
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -324,10 +308,6 @@ namespace Test_Assistant
                 MessageBox.Show("Invalid data");
                 return;
             }
-            if (_screenshotProcessor == null)
-            {
-                _screenshotProcessor = new ScreenshotProcessor();
-            }
             var specialActions = fileData.SpecialActions.Where(p => p.testCaseId == testcase.id).ToList();
             List<int> specialActionsIds = new List<int>();
             if (specialActions != null)
@@ -346,11 +326,11 @@ namespace Test_Assistant
                         switch (specialAction.actionName)
                         {
                             case "Photo":
-                                _screenshotProcessor.TakeScreenshot(0, 0, 200, 100);
+                                _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
                                 break;
                             case "Parse":
-                                var tempPath = _screenshotProcessor.TakeScreenshot(0, 0, 200, 100);
-                                _parseImageProcessor.ParseImage(tempPath);
+                                var tempPath = _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
+                                _ImageProcessor.ParseImage(tempPath);
                                 break;
                             default: break;
                         }
@@ -402,15 +382,11 @@ namespace Test_Assistant
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
         }
 
-        private void CasesPanel_Paint(object sender, PaintEventArgs e)
+        
+        private void testBtn_Click(object sender, EventArgs e) // TODO : Remove this method
         {
-
-        }
-
-        private void testBtn_Click(object sender, EventArgs e)
-        {
-            var bitmap = _screenshotProcessor.TakeScreenshot(0, 0, 200, 100);
-            string text = _parseImageProcessor.ParseImage(bitmap);
+            var bitmap = _ImageProcessor.TakeScreenshot(0, 0, 200, 100);
+            string text = _ImageProcessor.ParseImage(bitmap);
             MessageBox.Show(text);
 
         }
