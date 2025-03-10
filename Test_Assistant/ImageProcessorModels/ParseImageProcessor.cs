@@ -28,7 +28,7 @@ namespace Test_Assistant.ImageProcessorModels
 
         private string ExtractTextFromImage(string imagePath)
         {
-            using (var engine = new TesseractEngine(@"D:\visualStudio\Projects\Clicker_Renome\trainedDataLibs", "eng", EngineMode.Default))
+            using (var engine = new TesseractEngine(@".\..\..\..\..\trainedDataLibs", "eng", EngineMode.Default))
             {
                 using (var img = Pix.LoadFromFile(ConvertToBW(imagePath)))
                 {

@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\visualStudio\\Projects\\Test_Assistant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\imageprocessormodels\\parseimageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\imageprocessormodels\\parseimageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "ParseImageProcessor.cs",
+              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\ImageProcessorModels\\ParseImageProcessor.cs",
+              "RelativeDocumentMoniker": "Test_Assistant\\ImageProcessorModels\\ParseImageProcessor.cs",
+              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\ImageProcessorModels\\ParseImageProcessor.cs",
+              "RelativeToolTip": "Test_Assistant\\ImageProcessorModels\\ParseImageProcessor.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAiwB4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T19:34:52.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
@@ -44,20 +61,20 @@
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.Designer.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.Designer.cs",
               "RelativeToolTip": "Test_Assistant\\Form1.Designer.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAMwEoAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T19:17:50.831Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeToolTip": "Test_Assistant\\Form1.cs",
-              "ViewState": "AgIAAKoBAAAAAAAAAAAuwK4BAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADEBAAAAAAAAAAAkwB4BAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T18:59:05.653Z",
               "EditorCaption": ""
