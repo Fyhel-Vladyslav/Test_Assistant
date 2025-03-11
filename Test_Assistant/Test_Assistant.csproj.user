@@ -19,5 +19,8 @@
     <Compile Update="pagesModels\ListPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="pagesModels\ScreenSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
