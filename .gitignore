@@ -7,3 +7,6 @@ Release/
 *.userosscache
 *.sln.docstates
 *.VC.db
+.vs/**/*.suo
+.vs/**/*.db-shm
+.vs/**/*.db-wal
