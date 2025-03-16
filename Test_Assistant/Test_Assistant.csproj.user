@@ -10,6 +10,9 @@
     <Compile Update="Models\SpecialActionListElement.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="pagesModels\ActionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="pagesModels\CasesPage.cs">
       <SubType>Component</SubType>
     </Compile>
