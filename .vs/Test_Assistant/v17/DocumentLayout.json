@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "D:\\visualStudio\\Projects\\Test_Assistant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\models\\draganddropelement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\models\\draganddropelement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\listpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\listpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\actionspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\actionspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\screenselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\screenselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|D:\\visualStudio\\Projects\\Test_Assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,17 +34,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeToolTip": "Test_Assistant\\Form1.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAmwHsAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAmwL0AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T18:59:05.653Z",
               "IsPinned": true,
@@ -48,33 +52,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DragAndDropElement.cs",
+              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\DragAndDropElement.cs",
+              "RelativeDocumentMoniker": "Test_Assistant\\Models\\DragAndDropElement.cs",
+              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\DragAndDropElement.cs",
+              "RelativeToolTip": "Test_Assistant\\Models\\DragAndDropElement.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAIwG8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T22:20:28.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ListPage.cs",
+              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
+              "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ListPage.cs",
+              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
+              "RelativeToolTip": "Test_Assistant\\pagesModels\\ListPage.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAkwCIAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T22:15:07.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ActionsPage.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ActionsPage.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ActionsPage.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ActionsPage.cs",
               "RelativeToolTip": "Test_Assistant\\pagesModels\\ActionsPage.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAAAgwKgAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAEwMQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T10:54:09.061Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ScreenSelection.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ScreenSelection.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ScreenSelection.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ScreenSelection.cs",
-              "RelativeToolTip": "Test_Assistant\\pagesModels\\ScreenSelection.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAkwEAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T21:01:39.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ImageProcessor.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\ImageProcessor.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\ImageProcessor.cs",
@@ -82,19 +99,19 @@
               "RelativeToolTip": "Test_Assistant\\ImageProcessor.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAkwD4AAABrAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T19:34:52.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T19:34:52.505Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs [Design]",
               "RelativeToolTip": "Test_Assistant\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T19:18:08.255Z"
+              "WhenOpened": "2025-03-10T19:18:08.255Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -13,15 +13,28 @@ namespace Test_Assistant.Models
         private int _amountOfItemsInLine;
 
         public bool isDeleteButtonEnabled { get; set; }
+        public bool isAddButtonEnabled { get; set; }
+        //isDeleteButtonEnabled = true;
+        //isAddButtonEnabled = false;
+
         public int itemWidth { get; set; }
         public int itemHeight { get; set; }
         public Color itemColor { get; set; }
 
+
+
         public DragAndDropElement()
         {
         }
-        public DragAndDropElement(List <T> changebleListReference, List<string> labelsNames = null, int amountOfItemsInLine = 4)
-        { 
+
+        public DragAndDropElement(
+            List <T> changebleListReference,
+            List<string> labelsNames = null,
+            int amountOfItemsInLine = 4,
+            bool isDeleteButtonEnabled = true)
+        {
+            this.isDeleteButtonEnabled = isDeleteButtonEnabled;
+
             Initialize(changebleListReference, amountOfItemsInLine, labelsNames);
         }
 
@@ -42,7 +55,6 @@ namespace Test_Assistant.Models
             itemColor = Color.LightBlue;
             itemWidth = 120;
             itemHeight = 50;
-            isDeleteButtonEnabled = true;
 
             this.Width = (itemWidth + 10) * amountOfItemsInLine;
             this.Height = CalculateTestCaseHeight(_orderList.Count() + (isDeleteButtonEnabled ? 1 : 0));

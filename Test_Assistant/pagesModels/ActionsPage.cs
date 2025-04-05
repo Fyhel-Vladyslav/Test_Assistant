@@ -91,7 +91,7 @@ namespace Test_Assistant.pagesModels
                     runButton.Text = "Run";
                     runButton.Font = new Font("Arial", 12, FontStyle.Bold);
                     runButton.Dock = DockStyle.Right;
-                    runButton.BackColor = Color.Green;
+                    runButton.BackColor = Color.LightGreen;
                     //runButton.Click += (s, e) => PerformOrderClicksAsync(_fileData.Testcases.FirstOrDefault(p => p.id == checkList.testCaseId));
                     
                     card.Controls.Add(browseButton);

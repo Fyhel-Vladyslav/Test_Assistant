@@ -11,12 +11,14 @@ namespace Test_Assistant.pages
     {
         public ListPage(FileData fileData)
         {
-            Width = 550;
+            Width = 800;
+            Height = 400;
             FlowDirection = FlowDirection.LeftToRight;
             WrapContents = true; // Дозволяємо перенесення елементів на наступний рядок
             AllowDrop = true; 
             AutoScroll = true; // Додаємо прокрутку, якщо елементів багато
-            Padding = new Padding(20);
+            Padding = new Padding(10);
+            Dock = DockStyle.Left;
 
             int flowLayoutPanelHeinght = 0;
             int ChecklistsAmount = fileData.OrderLists.Count();
@@ -31,11 +33,12 @@ namespace Test_Assistant.pages
                         labelsNames.Add(fileData.Testcases.FirstOrDefault(x => x.id == order).name);
 
                     var dragAndDropElement = new DragAndDropElement<int>(fileData.OrderLists[i].caseIds, labelsNames);
-
+                    dragAndDropElement.BorderStyle = BorderStyle.FixedSingle;
+                    dragAndDropElement.Width = 600;
                     Controls.Add(dragAndDropElement);
                     flowLayoutPanelHeinght += dragAndDropElement.Height;
+
                 }
-                Height = flowLayoutPanelHeinght + 20;
             }
         }
 
