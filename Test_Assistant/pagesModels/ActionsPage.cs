@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Test_Assistant.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Test_Assistant.pagesModels
 {
@@ -34,18 +36,88 @@ namespace Test_Assistant.pagesModels
             _fileData = fileData;
             _ImageProcessor = new ImageProcessor();
 
-            Width = 550;
+            Width = 800;
+            Height = 395;
             FlowDirection = FlowDirection.LeftToRight;
             WrapContents = true; // Дозволяємо перенесення елементів на наступний рядок
             AllowDrop = true;
             AutoScroll = true; // Додаємо прокрутку, якщо елементів багато
             Padding = new Padding(20);
 
+            CreateListCardsItems();
+            //var StartRecordButton = new Button(); StartRecordButton.Size = new Size(183, 52); StartRecordButton.Location = new Point(19, 229); StartRecordButton.Text = "Record";// StartRecordButton.Click += buttonStartRecording_Click;
+            //var StartOrderButton = new Button(); StartOrderButton.Size = new Size(183, 52); StartOrderButton.Location = new Point(588, 229); StartOrderButton.Text = "Order"; StartOrderButton.Click += buttonStartOrder_Click;
+            //Controls.Add(StartRecordButton);
+            //Controls.Add(StartOrderButton);
+        }
 
-            var StartRecordButton = new Button(); StartRecordButton.Size = new Size(183, 52); StartRecordButton.Location = new Point(19, 229); StartRecordButton.Text = "Record";// StartRecordButton.Click += buttonStartRecording_Click;
-            var StartOrderButton = new Button(); StartOrderButton.Size = new Size(183, 52); StartOrderButton.Location = new Point(588, 229); StartOrderButton.Text = "Order"; StartOrderButton.Click += buttonStartOrder_Click;
-            Controls.Add(StartRecordButton);
-            Controls.Add(StartOrderButton);
+        private void CreateListCardsItems()
+        {
+            if (_fileData.Testcases != null)
+            {
+                foreach (var checkList in _fileData.OrderLists)
+                {
+                    var card = new Panel();
+                    card.Width = 700;
+                    card.Height = 50;
+                   // card.BackColor = Color.Red;
+                    card.Margin = new Padding(10);
+                    card.Padding = new Padding(10);
+                    card.BorderStyle = BorderStyle.FixedSingle;                   
+                    Controls.Add(card);
+
+                    var label = new Label();
+                    label.Text = checkList.name;
+                    label.Font = new Font("Arial", 12, FontStyle.Bold);
+                    label.Dock = DockStyle.Left;
+                    label.Width = 200;
+                    label.BorderStyle = BorderStyle.FixedSingle;
+
+
+
+                    var exelFileName = new TextBox();
+                    exelFileName.Width = 330;
+                    exelFileName.Text = $".\\CheckLists\\CheckList_{checkList.name}_{DateTime.Now:MM-dd_HH-mm-ss}.xlsx";
+                    exelFileName.Margin = new Padding(10);
+                    exelFileName.Dock = DockStyle.Left;
+
+                    var browseButton = new Button();
+                    browseButton.Text = "Browse";
+                    browseButton.Font = new Font("Arial", 8, FontStyle.Bold);
+                    browseButton.Dock = DockStyle.Right;
+                    browseButton.Click += (s, e) => browseButton_Click(s, e, exelFileName);
+
+                    var runButton = new Button();
+                    runButton.Text = "Run";
+                    runButton.Font = new Font("Arial", 12, FontStyle.Bold);
+                    runButton.Dock = DockStyle.Right;
+                    runButton.BackColor = Color.Green;
+                    //runButton.Click += (s, e) => PerformOrderClicksAsync(_fileData.Testcases.FirstOrDefault(p => p.id == checkList.testCaseId));
+                    
+                    card.Controls.Add(browseButton);
+                    card.Controls.Add(runButton);
+                    card.Controls.Add(exelFileName);
+                    card.Controls.Add(label);
+                }
+            }
+        }
+
+        private string browseButton_Click(object sender, EventArgs e, TextBox exelFileNameTextBoxLink)
+        {
+            string newPath = String.Empty;
+            FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                newPath = openFileDialog1.SelectedPath;
+                string enteredFileName = Path.GetFileName(exelFileNameTextBoxLink.Text);
+                if (string.IsNullOrEmpty(enteredFileName))
+                    enteredFileName = $"CheckList_untitled_{DateTime.Now:MM-dd_HH-mm-ss}.xlsx";
+                
+                exelFileNameTextBoxLink.Text = $"{newPath}\\{enteredFileName}";
+            }
+            Console.WriteLine(result); // <-- For debugging use.
+            return newPath;
         }
         private void buttonStartOrder_Click(object sender, EventArgs e)
         {
@@ -97,7 +169,7 @@ namespace Test_Assistant.pagesModels
             //TakeScreenshot();
             _instanceForm1.WindowState = FormWindowState.Normal;
         }
-        static void MouseClickAt(int x, int y)
+        private static void MouseClickAt(int x, int y)
         {
             var inputs = new Input[3];
 
