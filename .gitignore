@@ -10,3 +10,4 @@ Release/
 .vs/**/*.suo
 .vs/**/*.db-shm
 .vs/**/*.db-wal
+/Test_Assistant/TempImages
