@@ -39,9 +39,10 @@ namespace Test_Assistant
 
         /// <FILE_PATCHES>
 
-        private static string debugFilePath = ".\\..\\..\\..\\..\\MouseClicks.txt";// Debug file location
-        private static string orderFilePath = ".\\..\\..\\..\\..\\order.json";
-        private static string screenshotsFilePath = ".\\..\\..\\..\\..\\..\\screenshots";
+        private static string debugFilePath = ".\\MouseClicks.txt";// Debug file location
+
+        private static string orderFilePath = ".\\order.json";
+        private static string screenshotsFilePath = ".\\screenshots";
 
         /// </FILE_PATCHES>
 
@@ -166,8 +167,8 @@ namespace Test_Assistant
             _mouseHookID = SetMouseHook(_mouseProc);
             _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
 
-            ActionsPanel.Visible = true;
-            ListPanel.Visible = false;
+            ActionsPanel.Visible = false; //// TEST TEST TEST
+            ListPanel.Visible = true;
             CasesPanel.Visible = false;
 
 
@@ -283,8 +284,8 @@ namespace Test_Assistant
         
         private void testBtn_Click(object sender, EventArgs e) // TODO : Remove this method
         {
-            var bitmap = _ImageProcessor.TakeScreenshot(0, 0, 200, 100);
-            string text = _ImageProcessor.ParseImage(bitmap);
+            var path = _ImageProcessor.TakeScreenshot(0, 0, 200, 100);
+            string text = _ImageProcessor.ParseImage(path);
             MessageBox.Show(text);
 
         }

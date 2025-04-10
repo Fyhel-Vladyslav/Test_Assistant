@@ -13,7 +13,6 @@ namespace Test_Assistant.Models
         private int _amountOfItemsInLine;
 
         public bool isDeleteButtonEnabled { get; set; }
-        public bool isAddButtonEnabled { get; set; }
         //isDeleteButtonEnabled = true;
         //isAddButtonEnabled = false;
 
@@ -68,6 +67,8 @@ namespace Test_Assistant.Models
             if (isDeleteButtonEnabled){
                 CreateDeleteButton();
             }
+
+            
 
             if (_orderList == null){
                 return;

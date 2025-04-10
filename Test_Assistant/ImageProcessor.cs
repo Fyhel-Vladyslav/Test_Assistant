@@ -29,7 +29,7 @@ namespace Test_Assistant
 
         private string ExtractTextFromImage(string imagePath)
         {
-            using (var engine = new TesseractEngine(@".\..\..\..\..\trainedDataLibs", "eng", EngineMode.Default))
+            using (var engine = new TesseractEngine(@".\trainedDataLibs", "eng", EngineMode.Default))
             {
                 using (var img = Pix.LoadFromFile(ConvertToBW(imagePath)))
                 {
@@ -40,8 +40,6 @@ namespace Test_Assistant
                 }
             }
         }
-
-        // ...
 
         public string TakeScreenshot(int xStart = 0, int yStart = 0, int xEnd = 0, int yEnd = 0)
         {
@@ -60,7 +58,9 @@ namespace Test_Assistant
                 }
 
                 // Save the bitmap to the specified file path
-                string screenshotsFilePath = $".\\..\\..\\..\\TempImages\\{DateTime.Now:MM-dd_HH-mm-ss}.png"; // Define the path to save screenshots
+                string screenshotsFilePath = $".\\TempImages\\{DateTime.Now:MM-dd_HH-mm-ss}.png";
+                string screenshotsDirectory = ".\\TempImages";
+
                 bitmap.Save(screenshotsFilePath, System.Drawing.Imaging.ImageFormat.Png);
                 return screenshotsFilePath;
             }
@@ -80,7 +80,7 @@ namespace Test_Assistant
                     bwImage.SetPixel(x, y, bwColor);
                 }
             }
-            string screenshotsFilePath = $".\\..\\..\\..\\TempImages\\{DateTime.Now:MM-dd_HH-mm-ss}_BW.png"; // Define the path to save screenshots
+            string screenshotsFilePath = $".\\TempImages\\{DateTime.Now:MM-dd_HH-mm-ss}_BW.png"; // Define the path to save screenshots
             if (screenshotsFilePath != null)
                 bwImage.Save(screenshotsFilePath, System.Drawing.Imaging.ImageFormat.Png);
             return screenshotsFilePath;
