@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace Test_Assistant.pages
 {
@@ -26,8 +27,7 @@ namespace Test_Assistant.pages
                 AutoSize= true;
                 Margin = new Padding(5);
                 BackColor = Color.LightSkyBlue;
-                Dock = DockStyle.Top;
-
+                Dock = DockStyle.Bottom;
 
                 Controls.Add(new TextBox{Width = 40,Margin = new Padding(3),Text = action?.x.ToString()});
                 Controls.Add(new TextBox { Width = 40, Margin = new Padding(3), Text = action?.y.ToString() });
@@ -101,7 +101,7 @@ namespace Test_Assistant.pages
                         Margin = new Padding(3),
                     };
 
-                    AddButtonClick(i, _fileData, testCaseElement, addButton);
+                    CreateTestCaseButtonClick(i, _fileData, testCaseElement, addButton);
 
                     testCaseElement.Controls.Add(addButton);
                     _thisLink.Controls.Add(testCaseElement);
@@ -126,10 +126,27 @@ namespace Test_Assistant.pages
 
                     _thisLink.Controls.Add(_deleteButton);
 
-                    flowLayoutPanelHeinght += testCaseElement.Height + 10;
+                    flowLayoutPanelHeinght += testCaseElement.Height;
                 }
-                Height = flowLayoutPanelHeinght + 20;
+                Height = flowLayoutPanelHeinght + 70;
             }
+
+            var _addButton = new Button
+            {
+                Location = new Point(50, 50),
+                Text = "Create new testcase order",
+                BackColor = Color.LightGray,
+                ForeColor = Color.DarkSlateGray,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Bottom,
+                Height = 40,
+                Margin = new Padding(5),
+                Width = 680
+            };
+            _addButton.Click += _addButton_Click;
+
+            _thisLink.Controls.Add(_addButton);
         }
 
         private void _deleteButton_Click(object sender, EventArgs e)
@@ -200,7 +217,23 @@ namespace Test_Assistant.pages
              }
          }
         */
+        private void _addButton_Click(object sender, EventArgs e)
+        {
+            var orderList = new TestcaseData
+            {
+                id = 0,
+                actions = new List<TestCaseAction>(),
+            };
+            if (_fileData.Testcases.Count() > 0)
+                orderList.id = _fileData.Testcases.Last().id + 1;
 
+            orderList.name = $"New OrderList{orderList.id}";
+
+            _fileData.Testcases.Add(orderList);
+
+            _thisLink.Controls.Clear();
+            CreateComponents();
+        }
         public void SaveAllToLocalData()
         {
             foreach (var testCaseElement in Controls)
@@ -256,7 +289,7 @@ namespace Test_Assistant.pages
                 }
             }
         }
-        private void AddButtonClick(int i, FileData fileData, FlowLayoutPanel testCaseElement, Button addButton)
+        private void CreateTestCaseButtonClick(int i, FileData fileData, FlowLayoutPanel testCaseElement, Button addButton)
         {
             addButton.Click += (sender, e) =>
             {

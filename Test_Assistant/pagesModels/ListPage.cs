@@ -77,6 +77,23 @@ namespace Test_Assistant.pages
 
                 }
             }
+
+            var _addButton = new Button
+            {
+                Text = "Create new testcase order",
+                BackColor = Color.LightGray,
+                ForeColor = Color.DarkSlateGray,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Bottom,
+                Height = 40,
+                Margin = new Padding(5),
+                Width = 700
+            };
+            _addButton.Click += _addButton_Click;
+
+            _thisLink.Controls.Add(_addButton);
+
         }
         private void _deleteButton_Click(object sender, EventArgs e)
         {
@@ -86,11 +103,27 @@ namespace Test_Assistant.pages
             if (_confirmDelete.CallWindow())
             {
                 _fileData.OrderLists.Remove(_fileData.OrderLists.First(p => p.id == id));
-                // Call your actual delete logic here with id
 
                 _thisLink.Controls.Clear();
                 CreateComponents();
             }
+        }
+        private void _addButton_Click(object sender, EventArgs e)
+        {
+                var orderList = new OrderList
+                {
+                    id = 0,
+                    caseIds = new List<int>()
+                };
+                if (_fileData.OrderLists.Count() > 0)
+                    orderList.id = _fileData.OrderLists.Last().id + 1;
+
+                orderList.name = $"New OrderList{orderList.id}";
+
+                _fileData.OrderLists.Add(orderList);
+
+                _thisLink.Controls.Clear();
+                CreateComponents();
         }
     }
 }
