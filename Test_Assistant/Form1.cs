@@ -168,8 +168,8 @@ namespace Test_Assistant
             _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
 
             ActionsPanel.Visible = false; //// TEST TEST TEST
-            ListPanel.Visible = true;
-            CasesPanel.Visible = false;
+            ListPanel.Visible = false;
+            CasesPanel.Visible = true;
 
 
             //fileDataProcessor.SaveDataToFile(new FileData { OrderLists = new List<OrderList> { new OrderList { id = 1, name = "da", caseIds = new List<int> { 1, 3 } } }, Testcases = new List<TestcaseData> { new TestcaseData { id = 1, name = "DA", actions = new List<TestCaseAction> { new TestCaseAction { x = 1, y = 2, t = 3 }, new TestCaseAction { x = 100, y = 200, t = 300 }, new TestCaseAction { x = 10, y = 20, t = 30 } } } } });

@@ -14,6 +14,9 @@ namespace Test_Assistant.pages
     public class CasesPage: FlowLayoutPanel
     {
         private FileData _fileData;
+        private CasesPage _thisLink;
+        private ConfirmDelete _confirmDelete = new ConfirmDelete();
+
         private class ActionPanelElemnt : FlowLayoutPanel
         {
             public ActionPanelElemnt(TestCaseAction action=null)
@@ -23,7 +26,7 @@ namespace Test_Assistant.pages
                 AutoSize= true;
                 Margin = new Padding(5);
                 BackColor = Color.LightSkyBlue;
-                
+                Dock = DockStyle.Top;
 
 
                 Controls.Add(new TextBox{Width = 40,Margin = new Padding(3),Text = action?.x.ToString()});
@@ -35,22 +38,28 @@ namespace Test_Assistant.pages
         public CasesPage(FileData fileData)
         {
             _fileData = fileData;
+            _thisLink = this;
             Width = 800;
             Padding = new Padding(20);
 
+            CreateComponents();
+        }
+        private void CreateComponents()
+        {
             int flowLayoutPanelHeinght = 0;
-            int testCasesAmount = fileData.Testcases.Count();
+            int testCasesAmount = _fileData.Testcases.Count();
 
             if (testCasesAmount > 0)
             {
                 for (int i = 0; i < testCasesAmount; i++)
                 {
+                    var testCase = _fileData.Testcases[i];
                     var testCaseElement = new FlowLayoutPanel
                     {
-                        Tag = fileData.Testcases[i].id,
-                        Width = 750,
+                        Tag = testCase.id,
+                        Width = 680,
                         Height = 100,
-                        TabIndex = fileData.Testcases[i].id,
+                        TabIndex = testCase.id,
                         FlowDirection = FlowDirection.LeftToRight,
                         WrapContents = true,
                         AutoScroll = true,
@@ -59,13 +68,13 @@ namespace Test_Assistant.pages
                     };
 
                     int j = 0;
-                    foreach (var action in fileData.Testcases[i].actions)
+                    foreach (var action in testCase.actions)
                     {
                         ActionPanelElemnt actionPanel = new ActionPanelElemnt(action);
 
-                        var fileSpecialAction = fileData.SpecialActions.FirstOrDefault(p => p.testCaseActionId == j && p.testCaseId == i);
+                        var fileSpecialAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseActionId == j && p.testCaseId == i);
                         var newSpecAction = new SpecialActionListElement(fileSpecialAction != null ? fileSpecialAction.actionName : null);
-                        newSpecAction.TabIndex = fileData.Testcases[i].id;
+                        newSpecAction.TabIndex = _fileData.Testcases[i].id;
                         newSpecAction.DoubleClick += (sender, e) =>
                         {
                             if (newSpecAction.SelectedItem == null) return;
@@ -92,71 +101,161 @@ namespace Test_Assistant.pages
                         Margin = new Padding(3),
                     };
 
-                    AddButtonClick(i, fileData, testCaseElement, addButton);
+                    AddButtonClick(i, _fileData, testCaseElement, addButton);
 
                     testCaseElement.Controls.Add(addButton);
-                    Controls.Add(testCaseElement);
+                    _thisLink.Controls.Add(testCaseElement);
+
+
+                    var _deleteButton = new Button
+                    {
+                        Location = new Point(50, 50),
+                        Text = "Drop",
+                        BackColor = Color.Red,
+                        ForeColor = Color.White,
+                        Font = new Font("Arial", 10, FontStyle.Bold),
+                        TextAlign = ContentAlignment.MiddleCenter,
+                        Dock = DockStyle.Right,
+                        Height = 50,
+                        Margin = new Padding(5),
+                        AllowDrop = true,
+                        Width = 60,
+                        Tag = testCase.id
+                    };
+                    _deleteButton.Click += _deleteButton_Click;
+
+                    _thisLink.Controls.Add(_deleteButton);
+
                     flowLayoutPanelHeinght += testCaseElement.Height + 10;
                 }
                 Height = flowLayoutPanelHeinght + 20;
             }
         }
 
+        private void _deleteButton_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            int id = (int)clickedButton.Tag;
+
+            if (_confirmDelete.CallWindow())
+            {
+                _fileData.Testcases.Remove(_fileData.Testcases.First(p => p.id == id));
+                // Call your actual delete logic here with id
+
+                _thisLink.Controls.Clear();
+                CreateComponents();
+            }
+        }
+        /* public void SaveAllToLocalData()
+         {
+             foreach( var testCaseElement in Controls)
+             {
+                 var testCase = (FlowLayoutPanel)testCaseElement;
+                 var testCaseId = (int)testCase.Tag;
+                 var actions = testCase.Controls.OfType<ActionPanelElemnt>().ToList();
+                 var specialActions = testCase.Controls.OfType<SpecialActionListElement>().ToList();
+                 for (int j = 0; j < actions.Count; j++)
+                 {
+                     var tableAction = actions[j];
+
+                     _fileData.Testcases[testCaseId].actions[j].x = int.Parse(tableAction.Controls[0].Text);
+                     _fileData.Testcases[testCaseId].actions[j].y = int.Parse(tableAction.Controls[1].Text);
+                     _fileData.Testcases[testCaseId].actions[j].t = int.Parse(tableAction.Controls[2].Text);
+                 }
+
+                 foreach ( var tableSpecialAction in specialActions)
+                 {
+                     if (tableSpecialAction.SelectedItem != null)
+                     {
+                         if (_fileData.SpecialActions.Count > 0)
+                         {
+                             var fileAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseId == testCaseId && p.testCaseActionId == tableSpecialAction.TabIndex);
+                             if (fileAction != null)
+                             {
+                                 fileAction.actionName = tableSpecialAction.SelectedItem.ToString();
+                             }
+                             else
+                                 _fileData.SpecialActions.Add(new SpecialAction
+                                 {
+                                     id = _fileData.SpecialActions.Max(x => x.id) + 1,
+                                     actionName = tableSpecialAction.SelectedItem.ToString(),
+                                     testCaseId = testCaseId,
+                                     testCaseActionId = tableSpecialAction.TabIndex,
+                                 });
+                         }
+                         else
+                         {
+                             _fileData.SpecialActions.Add(
+                                 new SpecialAction
+                                 {
+                                     id = 1,
+                                     actionName = tableSpecialAction.SelectedItem.ToString(),
+                                     testCaseId = testCaseId,
+                                     testCaseActionId = tableSpecialAction.TabIndex,
+                                 }
+                             );
+                         }
+                     }
+                 }
+             }
+         }
+        */
 
         public void SaveAllToLocalData()
         {
-            foreach( var testCaseElement in Controls)
+            foreach (var testCaseElement in Controls)
             {
-                var testCase = (FlowLayoutPanel)testCaseElement;
-                var testCaseId = (int)testCase.Tag;
-                var actions = testCase.Controls.OfType<ActionPanelElemnt>().ToList();
-                var specialActions = testCase.Controls.OfType<SpecialActionListElement>().ToList();
-                for (int j = 0; j < actions.Count; j++)
+                if (testCaseElement is FlowLayoutPanel testCase)
                 {
-                    var tableAction = actions[j];
-
-                    _fileData.Testcases[testCaseId].actions[j].x = int.Parse(tableAction.Controls[0].Text);
-                    _fileData.Testcases[testCaseId].actions[j].y = int.Parse(tableAction.Controls[1].Text);
-                    _fileData.Testcases[testCaseId].actions[j].t = int.Parse(tableAction.Controls[2].Text);
-                }
-
-                foreach ( var tableSpecialAction in specialActions)
-                {
-                    if (tableSpecialAction.SelectedItem != null)
+                    var testCaseId = (int)testCase.Tag;
+                    var actions = testCase.Controls.OfType<ActionPanelElemnt>().ToList();
+                    var specialActions = testCase.Controls.OfType<SpecialActionListElement>().ToList();
+                    for (int j = 0; j < actions.Count; j++)
                     {
-                        if (_fileData.SpecialActions.Count > 0)
+                        var tableAction = actions[j];
+
+                        _fileData.Testcases[testCaseId].actions[j].x = int.Parse(tableAction.Controls[0].Text);
+                        _fileData.Testcases[testCaseId].actions[j].y = int.Parse(tableAction.Controls[1].Text);
+                        _fileData.Testcases[testCaseId].actions[j].t = int.Parse(tableAction.Controls[2].Text);
+                    }
+
+                    foreach (var tableSpecialAction in specialActions)
+                    {
+                        if (tableSpecialAction.SelectedItem != null)
                         {
-                            var fileAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseId == testCaseId && p.testCaseActionId == tableSpecialAction.TabIndex);
-                            if (fileAction != null)
+                            if (_fileData.SpecialActions.Count > 0)
                             {
-                                fileAction.actionName = tableSpecialAction.SelectedItem.ToString();
+                                var fileAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseId == testCaseId && p.testCaseActionId == tableSpecialAction.TabIndex);
+                                if (fileAction != null)
+                                {
+                                    fileAction.actionName = tableSpecialAction.SelectedItem.ToString();
+                                }
+                                else
+                                    _fileData.SpecialActions.Add(new SpecialAction
+                                    {
+                                        id = _fileData.SpecialActions.Max(x => x.id) + 1,
+                                        actionName = tableSpecialAction.SelectedItem.ToString(),
+                                        testCaseId = testCaseId,
+                                        testCaseActionId = tableSpecialAction.TabIndex,
+                                    });
                             }
                             else
-                                _fileData.SpecialActions.Add(new SpecialAction
-                                {
-                                    id = _fileData.SpecialActions.Max(x => x.id) + 1,
-                                    actionName = tableSpecialAction.SelectedItem.ToString(),
-                                    testCaseId = testCaseId,
-                                    testCaseActionId = tableSpecialAction.TabIndex,
-                                });
-                        }
-                        else
-                        {
-                            _fileData.SpecialActions.Add(
-                                new SpecialAction
-                                {
-                                    id = 1,
-                                    actionName = tableSpecialAction.SelectedItem.ToString(),
-                                    testCaseId = testCaseId,
-                                    testCaseActionId = tableSpecialAction.TabIndex,
-                                }
-                            );
+                            {
+                                _fileData.SpecialActions.Add(
+                                    new SpecialAction
+                                    {
+                                        id = 1,
+                                        actionName = tableSpecialAction.SelectedItem.ToString(),
+                                        testCaseId = testCaseId,
+                                        testCaseActionId = tableSpecialAction.TabIndex,
+                                    }
+                                );
+                            }
                         }
                     }
                 }
             }
         }
-
         private void AddButtonClick(int i, FileData fileData, FlowLayoutPanel testCaseElement, Button addButton)
         {
             addButton.Click += (sender, e) =>

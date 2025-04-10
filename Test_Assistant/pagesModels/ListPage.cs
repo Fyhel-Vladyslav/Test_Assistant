@@ -38,12 +38,13 @@ namespace Test_Assistant.pages
             {
                 for (int i = 0; i < _fileData.OrderLists.Count(); i++)
                 {
+                    var checklist = _fileData.OrderLists[i];
                     List<string> labelsNames = new List<string>();
 
-                    foreach (var order in _fileData.OrderLists[i].caseIds)
-                        labelsNames.Add(_fileData.Testcases.FirstOrDefault(x => x.id == order).name);
+                    foreach (var caseId in checklist.caseIds)
+                        labelsNames.Add(_fileData.Testcases.FirstOrDefault(x => x.id == caseId)?.name ?? "deleted");
 
-                    var dragAndDropElement = new DragAndDropElement<int>(_fileData.OrderLists[i].caseIds, labelsNames);
+                    var dragAndDropElement = new DragAndDropElement<int>(checklist.caseIds, labelsNames);
                     dragAndDropElement.BorderStyle = BorderStyle.FixedSingle;
                     dragAndDropElement.Width = 700;
 
@@ -65,7 +66,7 @@ namespace Test_Assistant.pages
                         Margin = new Padding(5),
                         AllowDrop = true,
                         Width = 60,
-                        Tag = i
+                        Tag = checklist.id
                     };
                     _deleteButton.Click += _deleteButton_Click;
 
@@ -84,7 +85,7 @@ namespace Test_Assistant.pages
 
             if (_confirmDelete.CallWindow())
             {
-                _fileData.OrderLists.RemoveAt(id);
+                _fileData.OrderLists.Remove(_fileData.OrderLists.First(p => p.id == id));
                 // Call your actual delete logic here with id
 
                 _thisLink.Controls.Clear();
