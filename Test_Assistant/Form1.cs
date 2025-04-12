@@ -13,6 +13,7 @@ using Test_Assistant.Models;
 using Test_Assistant.pages;
 using static System.Windows.Forms.LinkLabel;
 using Test_Assistant.pagesModels;
+using Test_Assistant.Enums;
 
 namespace Test_Assistant
 {
@@ -162,6 +163,9 @@ namespace Test_Assistant
 
             InitializeComponent();
 
+            Width = (int)WindowParamethers.TotalWidth+30;
+            Height = (int)WindowParamethers.TotalHeight+ (int)WindowParamethers.BottomLayoutHeight;
+
             File.WriteAllText(debugFilePath, "Mouse Click Positions:\n");
 
             _mouseHookID = SetMouseHook(_mouseProc);
@@ -177,7 +181,9 @@ namespace Test_Assistant
 
         private void CreateActionsPanel()
         {
-            ActionsPanel = new Panel(); ActionsPanel.Size = new Size(800, 395); ActionsPanel.Location = new Point(0, 30);
+            ActionsPanel = new Panel();
+            ActionsPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            ActionsPanel.Location = new Point(0, 30);
             Controls.Add(ActionsPanel);
 
             ActionsPanel.Controls.Add(new ActionsPage(_instanceForm1, fileData));
@@ -185,7 +191,9 @@ namespace Test_Assistant
 
         private void CreateCasesPanel()
         {
-            CasesPanel = new Panel(); CasesPanel.Size = new Size(800, 395); CasesPanel.Location = new Point(0, 30);
+            CasesPanel = new Panel();
+            CasesPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            CasesPanel.Location = new Point(0, 30);
             Controls.Add(CasesPanel);
 
             if (fileData.Testcases == null)
@@ -201,7 +209,9 @@ namespace Test_Assistant
 
         private void CreateChecklistPanel()
         {
-            ListPanel = new Panel(); ListPanel.Size = new Size(800, 395); ListPanel.Location = new Point(0, 30);
+            ListPanel = new Panel();
+            ListPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            ListPanel.Location = new Point(0, 30);
             Controls.Add(ListPanel);
 
             if (fileData.Testcases == null)
@@ -217,8 +227,8 @@ namespace Test_Assistant
 
         private void CreateLayoutElements()
         {
-            DismissButton = new Button(); DismissButton.Size = new Size(183, 52); DismissButton.Location = new Point(19, 429); DismissButton.Text = "Dismiss"; DismissButton.Click += DismissButton_Click;
-            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, 429); SaveButton.Text = "Save"; SaveButton.Click += SaveButton_Click;
+            DismissButton = new Button(); DismissButton.Size = new Size(183, 52); DismissButton.Location = new Point(19, (int)WindowParamethers.TotalHeight+30); DismissButton.Text = "Dismiss"; DismissButton.Click += DismissButton_Click;
+            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, (int)WindowParamethers.TotalHeight+30); SaveButton.Text = "Save"; SaveButton.Click += SaveButton_Click;
             Controls.Add(DismissButton);
             Controls.Add(SaveButton);
         }

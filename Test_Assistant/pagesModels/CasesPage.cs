@@ -17,6 +17,7 @@ namespace Test_Assistant.pages
         private FileData _fileData;
         private CasesPage _thisLink;
         private ConfirmDelete _confirmDelete = new ConfirmDelete();
+        private int deleteButtonsWidth = 140;
 
         private class ActionPanelElemnt : FlowLayoutPanel
         {
@@ -39,9 +40,17 @@ namespace Test_Assistant.pages
         {
             _fileData = fileData;
             _thisLink = this;
-            Width = 800;
+            Width = (int)WindowParamethers.TotalWidth;
             Padding = new Padding(20);
+            AutoScroll = true;
+            Dock = DockStyle.Left;
 
+            CreateComponents();
+        }
+
+        private void RefreshPage()
+        {
+            _thisLink.Controls.Clear();
             CreateComponents();
         }
         private void CreateComponents()
@@ -57,7 +66,7 @@ namespace Test_Assistant.pages
                     var testCaseElement = new FlowLayoutPanel
                     {
                         Tag = testCase.id,
-                        Width = 680,
+                        Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth,
                         Height = 100,
                         TabIndex = testCase.id,
                         FlowDirection = FlowDirection.LeftToRight,
@@ -142,7 +151,7 @@ namespace Test_Assistant.pages
                 Dock = DockStyle.Bottom,
                 Height = 40,
                 Margin = new Padding(5),
-                Width = 680
+                Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth
             };
             _addButton.Click += _addButton_Click;
 
@@ -219,20 +228,26 @@ namespace Test_Assistant.pages
         */
         private void _addButton_Click(object sender, EventArgs e)
         {
-            var orderList = new TestcaseData
+            if (_confirmDelete.CallWindow("Do you want to start recording actions now?"))
             {
-                id = 0,
-                actions = new List<TestCaseAction>(),
-            };
-            if (_fileData.Testcases.Count() > 0)
-                orderList.id = _fileData.Testcases.Last().id + 1;
 
-            orderList.name = $"New OrderList{orderList.id}";
+            }
+            else
+            {
+                var TestcaseLine = new TestcaseData
+                {
+                    id = 0,
+                    actions = new List<TestCaseAction>(),
+                };
+                if (_fileData.Testcases.Count() > 0)
+                    TestcaseLine.id = _fileData.Testcases.Last().id + 1;
 
-            _fileData.Testcases.Add(orderList);
+                TestcaseLine.name = $"New OrderList{TestcaseLine.id}";
 
-            _thisLink.Controls.Clear();
-            CreateComponents();
+                _fileData.Testcases.Add(TestcaseLine);
+
+                RefreshPage();
+            }
         }
         public void SaveAllToLocalData()
         {
@@ -297,7 +312,7 @@ namespace Test_Assistant.pages
 
                 ActionPanelElemnt actionPanel = new ActionPanelElemnt();
                 testCaseElement.Controls.Add(actionPanel);
-                testCaseElement.Controls.SetChildIndex(actionPanel, testCaseElement.Controls.GetChildIndex(addButton));
+                //testCaseElement.Controls.SetChildIndex(actionPanel, testCaseElement.Controls.GetChildIndex(addButton));
             };
         }
     }

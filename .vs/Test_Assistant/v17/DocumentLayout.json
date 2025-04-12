@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\visualStudio\\Projects\\Test_Assistant\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\casespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\casespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,12 +15,8 @@
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\listpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\models\\confirmdelete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\models\\confirmdelete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\enums\\windowparamethers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\enums\\windowparamethers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\editspecialactionpageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,17 +34,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeToolTip": "Test_Assistant\\Form1.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAowKsAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAOMAAAAAAAAAAAA8wPoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T18:59:05.653Z",
               "IsPinned": true,
@@ -52,26 +52,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConfirmDelete.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\ConfirmDelete.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\Models\\ConfirmDelete.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\ConfirmDelete.cs",
-              "RelativeToolTip": "Test_Assistant\\Models\\ConfirmDelete.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "WindowParamethers.cs",
+              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Enums\\WindowParamethers.cs",
+              "RelativeDocumentMoniker": "Test_Assistant\\Enums\\WindowParamethers.cs",
+              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Enums\\WindowParamethers.cs",
+              "RelativeToolTip": "Test_Assistant\\Enums\\WindowParamethers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T22:00:44.132Z",
+              "WhenOpened": "2025-04-12T18:13:58.69Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CasesPage.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\CasesPage.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\CasesPage.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\CasesPage.cs",
               "RelativeToolTip": "Test_Assistant\\pagesModels\\CasesPage.cs",
-              "ViewState": "AgIAAOsAAAAAAAAAAAAcwPkAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAAD4v+gAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T21:18:49.838Z",
               "EditorCaption": ""
@@ -86,17 +86,18 @@
               "RelativeToolTip": "Test_Assistant\\pagesModels\\EditSpecialActionPageForm.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAQwA8AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T21:50:21.318Z"
+              "WhenOpened": "2025-04-09T21:50:21.318Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ListPage.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ListPage.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
               "RelativeToolTip": "Test_Assistant\\pagesModels\\ListPage.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwv1cAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwBUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-05T22:15:07.458Z",
               "EditorCaption": ""
@@ -110,7 +111,8 @@
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs [Design]",
               "RelativeToolTip": "Test_Assistant\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T19:18:08.255Z"
+              "WhenOpened": "2025-03-10T19:18:08.255Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

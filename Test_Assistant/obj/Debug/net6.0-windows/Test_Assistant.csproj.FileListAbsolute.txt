@@ -24,3 +24,4 @@ D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.pagesModels.EditSpecialActionPageForm.resources
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Ass.4D0D1B4F.Up2Date
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.sourcelink.json
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.pagesModels.ScreenSelection.resources

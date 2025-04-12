@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using Test_Assistant.Enums;
 
 namespace Test_Assistant.pages
 {
@@ -13,12 +14,12 @@ namespace Test_Assistant.pages
         private ListPage _thisLink;
         private FileData _fileData;
         private ConfirmDelete _confirmDelete = new ConfirmDelete();
+        private int deleteButtonsWidth = 140;
         public ListPage(FileData fileData)
         {
             _thisLink = this;
             _fileData = fileData;
-            Width = 800;
-            Height = 400;
+            Width = (int)WindowParamethers.TotalWidth;
             FlowDirection = FlowDirection.LeftToRight;
             WrapContents = true; // Дозволяємо перенесення елементів на наступний рядок
             AllowDrop = true; 
@@ -46,7 +47,7 @@ namespace Test_Assistant.pages
 
                     var dragAndDropElement = new DragAndDropElement<int>(checklist.caseIds, labelsNames);
                     dragAndDropElement.BorderStyle = BorderStyle.FixedSingle;
-                    dragAndDropElement.Width = 700;
+                    dragAndDropElement.Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth;
 
 
                     _thisLink.Controls.Add(dragAndDropElement);
@@ -88,7 +89,7 @@ namespace Test_Assistant.pages
                 Dock = DockStyle.Bottom,
                 Height = 40,
                 Margin = new Padding(5),
-                Width = 700
+                Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth
             };
             _addButton.Click += _addButton_Click;
 
