@@ -14,6 +14,7 @@ namespace Test_Assistant.pages
 {
     public class CasesPage: FlowLayoutPanel
     {
+        private MouseAndKeyboardProcessor _mouseAndKeyboardProcessor;
         private FileData _fileData;
         private CasesPage _thisLink;
         private ConfirmDelete _confirmDelete = new ConfirmDelete();
@@ -36,8 +37,9 @@ namespace Test_Assistant.pages
             }
         }
 
-        public CasesPage(FileData fileData)
+        public CasesPage(FileData fileData, MouseAndKeyboardProcessor mouseAndKeyboardProcessor)
         {
+            _mouseAndKeyboardProcessor = mouseAndKeyboardProcessor;
             _fileData = fileData;
             _thisLink = this;
             Width = (int)WindowParamethers.TotalWidth;
@@ -230,7 +232,7 @@ namespace Test_Assistant.pages
         {
             if (_confirmDelete.CallWindow("Do you want to start recording actions now?"))
             {
-
+                _mouseAndKeyboardProcessor.StartRecording();
             }
             else
             {

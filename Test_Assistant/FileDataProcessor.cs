@@ -10,11 +10,10 @@ namespace Test_Assistant
 {
     public class FileDataProcessor
     {
-        private readonly string orderFilePath = "order.json";
+        private readonly string orderFilePath = ".\\order.json";
         public FileDataProcessor(string filePath)
         {
             this.orderFilePath = filePath;
-
         }
         public FileData LoadDataFromFile()
         {
