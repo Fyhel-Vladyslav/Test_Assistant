@@ -232,11 +232,12 @@ namespace Test_Assistant.pages
         {
             if (_confirmDelete.CallWindow("Do you want to start recording actions now?"))
             {
+                if(_mouseAndKeyboardProcessor != null)
                 _mouseAndKeyboardProcessor.StartRecording();
             }
             else
             {
-                var TestcaseLine = new TestcaseData
+                var TestcaseLine = new TestCaseData
                 {
                     id = 0,
                     actions = new List<TestCaseAction>(),
@@ -264,9 +265,13 @@ namespace Test_Assistant.pages
                     {
                         var tableAction = actions[j];
 
+                        if (tableAction != null)
+                        { 
                         _fileData.Testcases[testCaseId].actions[j].x = int.Parse(tableAction.Controls[0].Text);
+
                         _fileData.Testcases[testCaseId].actions[j].y = int.Parse(tableAction.Controls[1].Text);
                         _fileData.Testcases[testCaseId].actions[j].t = int.Parse(tableAction.Controls[2].Text);
+                        }
                     }
 
                     foreach (var tableSpecialAction in specialActions)

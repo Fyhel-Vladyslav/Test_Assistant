@@ -11,9 +11,9 @@ namespace Test_Assistant
     public class FileDataProcessor
     {
         private readonly string orderFilePath = ".\\order.json";
-        public FileDataProcessor(string filePath)
+        private string lastTestCasefilePath = ".\\lastTestCaseFile.json";
+        public FileDataProcessor()
         {
-            this.orderFilePath = filePath;
         }
         public FileData LoadDataFromFile()
         {
@@ -41,6 +41,54 @@ namespace Test_Assistant
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving data: {ex.Message}");
+            }
+        }
+
+        public void AddNewActionToLastTestCaseFile(TestCaseAction newAction)
+        {
+            try
+            {
+                var lastTestCase = GetLastTestCase();
+                if (lastTestCase.actions == null)
+                {
+                    lastTestCase.actions = new List<TestCaseAction>();
+                }
+                lastTestCase.actions.Add(newAction);
+                File.WriteAllText(lastTestCasefilePath, JsonConvert.SerializeObject(lastTestCase, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving last test case: {ex.Message}");
+            }
+        }
+
+        public TestCaseData GetLastTestCase()
+        {
+            if (File.Exists(lastTestCasefilePath))
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<TestCaseData>(File.ReadAllText(lastTestCasefilePath));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading data: {ex.Message}");
+                    return new TestCaseData();
+                }
+            }
+            return new TestCaseData();
+        }
+
+        public void ClearLastTestCaseFile()
+        {
+            try
+            {
+                File.WriteAllText(lastTestCasefilePath, JsonConvert.SerializeObject(new TestCaseData(), Formatting.Indented));
+                File.WriteAllText(lastTestCasefilePath, JsonConvert.SerializeObject(new TestCaseData(), Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving last test case: {ex.Message}");
             }
         }
     }

@@ -14,7 +14,9 @@ namespace Test_Assistant
         public static Form1 _instanceForm1;
         public static System.Windows.Forms.Timer _globalTimer;
 
-        private static string lastTestCasefilePath = ".\\lastTestCasefilePath.txt";// Debug file location
+        private static FileData _fileData;
+        private static FileDataProcessor _fileDataProcessor;
+        private static string debugFile = ".\\lastTestCaseFile.txt";// Debug file location
         private static bool isRecordingClicks = false;
         private static int elapsedPartialSeconds = 0;
 
@@ -55,7 +57,7 @@ namespace Test_Assistant
         /// </MOUSE_EVENT_VARIABLES>
 
         /// <MOUSE_AND_KEYBOARD_HOOK_VARIABLES>
-        
+
         private static IntPtr _keyboardHookID = IntPtr.Zero;
         private static LowLevelMouseProc _mouseProc = MouseHookCallback;
         private static IntPtr _mouseHookID = IntPtr.Zero;
@@ -89,8 +91,16 @@ namespace Test_Assistant
                     MSLLHOOKSTRUCT mouseStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam);
                     if (mouseStruct.mouseData != null)
                     {
-                        File.AppendAllText(lastTestCasefilePath, $"X: {mouseStruct.pt.x}, Y: {mouseStruct.pt.y}, Button: {(wParam == (IntPtr)WM_LBUTTONDOWN ? "Left" : "Right")}" + Environment.NewLine);
-                        File.AppendAllText(lastTestCasefilePath, $"{mouseStruct.pt.x},{mouseStruct.pt.y},{elapsedPartialSeconds}\n");
+                        File.AppendAllText(debugFile, $"X: {mouseStruct.pt.x}, Y: {mouseStruct.pt.y}, Button: {(wParam == (IntPtr)WM_LBUTTONDOWN ? "Left" : "Right")}" + Environment.NewLine);
+                        File.AppendAllText(debugFile, $"{mouseStruct.pt.x},{mouseStruct.pt.y},{elapsedPartialSeconds}\n");
+
+                        _fileDataProcessor.AddNewActionToLastTestCaseFile(new TestCaseAction
+                        {
+                            x = mouseStruct.pt.x,
+                            y = mouseStruct.pt.y,
+                            t = elapsedPartialSeconds
+                        });
+
                         elapsedPartialSeconds = 0;
                     }
                 }
@@ -109,6 +119,16 @@ namespace Test_Assistant
                         _instanceForm1.WindowState = FormWindowState.Normal;
                         _globalTimer.Enabled = false;
                         elapsedPartialSeconds = 0;
+
+                        //TODO: Make this a promise to casePege to to saving
+
+                        if (_fileData != null)
+                        {
+                            var testCase = _fileDataProcessor.GetLastTestCase();
+                            testCase.id = _fileData.Testcases.Last().id + 1;
+                            _fileData.Testcases.Add(testCase);
+                        }
+
                     }
                 }
             }
@@ -118,13 +138,15 @@ namespace Test_Assistant
 
         /// </HOOK_LOGISTIC>
         
-        public MouseAndKeyboardProcessor(Form1 instanceForm1)
+        public MouseAndKeyboardProcessor(Form1 instanceForm1, FileData fileData)
         {
             _instanceForm1 = instanceForm1;
             _globalTimer = new System.Windows.Forms.Timer();
+            _fileData = fileData;
 
             _mouseHookID = SetMouseHook(_mouseProc);
             _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
+            _fileDataProcessor = new FileDataProcessor();
         }
 
         //public IntPtr HookMouse()
@@ -154,6 +176,7 @@ namespace Test_Assistant
             isRecordingClicks = true;
             _instanceForm1.WindowState = FormWindowState.Minimized;
             StartPartialTimer();
+            _fileDataProcessor.ClearLastTestCaseFile();
         }
         private void StartPartialTimer()
         {

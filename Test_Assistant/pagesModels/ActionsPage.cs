@@ -129,7 +129,7 @@ namespace Test_Assistant.pagesModels
                 PerformOrderClicksAsync(_fileData.Testcases[0]);
             }
         }
-        public async void PerformOrderClicksAsync(TestcaseData testcase)
+        public async void PerformOrderClicksAsync(TestCaseData testcase)
         {
             if (testcase == null)
             {

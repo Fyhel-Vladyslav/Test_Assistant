@@ -38,9 +38,9 @@ namespace Test_Assistant
         private Button DismissButton;
         private Button SaveButton;
         private static Form1 _instanceForm1;
-        private FileDataProcessor fileDataProcessor = new FileDataProcessor(orderFilePath);
+        private FileDataProcessor fileDataProcessor = new FileDataProcessor();
         private static FileData prevFileData;
-        private static FileData fileData;
+        public static FileData fileData;
         private static ImageProcessor _imageProcessor;
         private CasesPage casesPage;
         private MouseAndKeyboardProcessor _mouseAndKeyboardProcessor;
@@ -57,25 +57,27 @@ namespace Test_Assistant
             prevFileData = fileDataProcessor.LoadDataFromFile();
             _imageProcessor = new ImageProcessor();
 
-            CreateActionsPanel();
-            CreateChecklistPanel();
-            CreateCasesPanel();
-            CreateLayoutElements();
 
             InitializeComponent();
 
             Width = (int)WindowParamethers.TotalWidth+30;
             Height = (int)WindowParamethers.TotalHeight+ (int)WindowParamethers.BottomLayoutHeight;
 
-            ActionsPanel.Visible = false; //// TEST TEST TEST
-            ListPanel.Visible = false;
-            CasesPanel.Visible = true;
 
             this.FormClosing += Form1_FormClosing;
 
             this.Load += Form1_Load;
 
-            _mouseAndKeyboardProcessor = new MouseAndKeyboardProcessor(this);
+            _mouseAndKeyboardProcessor = new MouseAndKeyboardProcessor(this, fileData);
+
+            CreateActionsPanel();
+            CreateChecklistPanel();
+            CreateCasesPanel();
+
+            CreateLayoutElements();
+            ActionsPanel.Visible = false; //// TEST TEST TEST
+            ListPanel.Visible = false;
+            CasesPanel.Visible = true;
 
             //Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
@@ -87,22 +89,24 @@ namespace Test_Assistant
             //fileDataProcessor.SaveDataToFile(new FileData { OrderLists = new List<OrderList> { new OrderList { id = 1, name = "da", caseIds = new List<int> { 1, 3 } } }, Testcases = new List<TestcaseData> { new TestcaseData { id = 1, name = "DA", actions = new List<TestCaseAction> { new TestCaseAction { x = 1, y = 2, t = 3 }, new TestCaseAction { x = 100, y = 200, t = 300 }, new TestCaseAction { x = 10, y = 20, t = 30 } } } } });
         }
 
-        /*private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
+        //private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        //{
+        //    _mouseAndKeyboardProcessor.UnhookAll();
 
-            // Handle UI thread exceptions here
-            MessageBox.Show($"Unhandled UI Exception: {e.Exception.Message}, hooks were unhoocked", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            // You can also log the exception, cleanup resources, etc.
-        }
+        //    // Handle UI thread exceptions here
+        //    MessageBox.Show($"Unhandled UI Exception: {e.Exception.Message}, hooks were unhoocked", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    // You can also log the exception, cleanup resources, etc.
+        //}
 
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            // Handle non-UI thread exceptions here
-            Exception ex = (Exception)e.ExceptionObject;
-            MessageBox.Show($"Unhandled Non-UI Exception: {ex.Message}, hooks were unhoocked", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            // You can also log the exception, cleanup resources, etc.
-        }
-*/
+        //private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    _mouseAndKeyboardProcessor.UnhookAll();
+        //    // Handle non-UI thread exceptions here
+        //    Exception ex = (Exception)e.ExceptionObject;
+        //    MessageBox.Show($"Unhandled Non-UI Exception: {ex.Message}, hooks were unhoocked", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    // You can also log the exception, cleanup resources, etc.
+        //}
+
         private void CreateActionsPanel()
         {
             ActionsPanel = new Panel();
