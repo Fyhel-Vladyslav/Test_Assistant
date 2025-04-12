@@ -12,6 +12,8 @@ using System.Xml.Linq;
 using Test_Assistant.Models;
 using Test_Assistant.pages;
 using static System.Windows.Forms.LinkLabel;
+using Test_Assistant.pagesModels;
+using Test_Assistant.Enums;
 
 namespace Test_Assistant
 {
@@ -34,18 +36,14 @@ namespace Test_Assistant
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
 
-        [DllImport("user32.dll")]
-        private static extern uint SendInput(uint nInputs, Input[] pInputs, int cbSize);
-        [DllImport("user32.dll")]
-        private static extern int GetSystemMetrics(int nIndex);
-
         ///</HOOK_IMPORTS>
 
         /// <FILE_PATCHES>
 
-        private static string debugFilePath = ".\\..\\..\\..\\..\\MouseClicks.txt";// Debug file location
-        private static string orderFilePath = ".\\..\\..\\..\\..\\order.json";
-        private static string screenshotsFilePath = ".\\..\\..\\..\\..\\..\\screenshots";
+        private static string debugFilePath = ".\\MouseClicks.txt";// Debug file location
+
+        private static string orderFilePath = ".\\order.json";
+        private static string screenshotsFilePath = ".\\screenshots";
 
         /// </FILE_PATCHES>
 
@@ -63,11 +61,6 @@ namespace Test_Assistant
         private const int WH_MOUSE_LL = 14;
         private const int WM_LBUTTONDOWN = 0x0201;
         private const int WM_RBUTTONDOWN = 0x0204;
-        private const uint InputMouse = 0;
-        private const uint MouseEventLeftDown = 0x0002;
-        private const uint MouseEventLeftUp = 0x0004;
-        private const uint MouseEventMove = 0x0001;
-        private const uint MouseEventAbsolute = 0x8000;
 
         /// </MOUSE_EVENT_VARIABLES>
 
@@ -170,12 +163,15 @@ namespace Test_Assistant
 
             InitializeComponent();
 
+            Width = (int)WindowParamethers.TotalWidth+30;
+            Height = (int)WindowParamethers.TotalHeight+ (int)WindowParamethers.BottomLayoutHeight;
+
             File.WriteAllText(debugFilePath, "Mouse Click Positions:\n");
 
             _mouseHookID = SetMouseHook(_mouseProc);
             _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
 
-            ActionsPanel.Visible = false;
+            ActionsPanel.Visible = false; //// TEST TEST TEST
             ListPanel.Visible = false;
             CasesPanel.Visible = true;
 
@@ -185,18 +181,19 @@ namespace Test_Assistant
 
         private void CreateActionsPanel()
         {
-            ActionsPanel = new Panel(); ActionsPanel.Size = new Size(800, 395); ActionsPanel.Location = new Point(0, 30);
+            ActionsPanel = new Panel();
+            ActionsPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            ActionsPanel.Location = new Point(0, 30);
             Controls.Add(ActionsPanel);
 
-            var StartRecordButton = new Button(); StartRecordButton.Size = new Size(183, 52); StartRecordButton.Location = new Point(19, 229); StartRecordButton.Text = "Record"; StartRecordButton.Click += buttonStartRecording_Click;
-            var StartOrderButton = new Button(); StartOrderButton.Size = new Size(183, 52); StartOrderButton.Location = new Point(588, 229); StartOrderButton.Text = "Order"; StartOrderButton.Click += buttonStartOrder_Click;
-            ActionsPanel.Controls.Add(StartRecordButton);
-            ActionsPanel.Controls.Add(StartOrderButton);
+            ActionsPanel.Controls.Add(new ActionsPage(_instanceForm1, fileData));
         }
 
         private void CreateCasesPanel()
         {
-            CasesPanel = new Panel(); CasesPanel.Size = new Size(800, 395); CasesPanel.Location = new Point(0, 30);
+            CasesPanel = new Panel();
+            CasesPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            CasesPanel.Location = new Point(0, 30);
             Controls.Add(CasesPanel);
 
             if (fileData.Testcases == null)
@@ -212,7 +209,9 @@ namespace Test_Assistant
 
         private void CreateChecklistPanel()
         {
-            ListPanel = new Panel(); ListPanel.Size = new Size(800, 395); ListPanel.Location = new Point(0, 30);
+            ListPanel = new Panel();
+            ListPanel.Size = new Size((int)WindowParamethers.TotalWidth, (int)WindowParamethers.TotalHeight);
+            ListPanel.Location = new Point(0, 30);
             Controls.Add(ListPanel);
 
             if (fileData.Testcases == null)
@@ -228,8 +227,8 @@ namespace Test_Assistant
 
         private void CreateLayoutElements()
         {
-            DismissButton = new Button(); DismissButton.Size = new Size(183, 52); DismissButton.Location = new Point(19, 429); DismissButton.Text = "Dismiss"; DismissButton.Click += DismissButton_Click;
-            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, 429); SaveButton.Text = "Save"; SaveButton.Click += SaveButton_Click;
+            DismissButton = new Button(); DismissButton.Size = new Size(183, 52); DismissButton.Location = new Point(19, (int)WindowParamethers.TotalHeight+30); DismissButton.Text = "Dismiss"; DismissButton.Click += DismissButton_Click;
+            SaveButton = new Button(); SaveButton.Size = new Size(183, 52); SaveButton.Location = new Point(588, (int)WindowParamethers.TotalHeight+30); SaveButton.Text = "Save"; SaveButton.Click += SaveButton_Click;
             Controls.Add(DismissButton);
             Controls.Add(SaveButton);
         }
@@ -249,18 +248,6 @@ namespace Test_Assistant
             isRecordingClicks = true;
             _instanceForm1.WindowState = FormWindowState.Minimized;
             StartPartialTimer();
-            File.WriteAllText(orderFilePath, "");
-        }
-
-        private void buttonStartOrder_Click(object sender, EventArgs e)
-        {
-            _instanceForm1.WindowState = FormWindowState.Minimized;
-
-
-            if (fileData.Testcases != null)
-            {
-                PerformOrderClicksAsync(fileData.Testcases[0]);
-            }
         }
 
         // Блокуємо натискання Enter
@@ -301,92 +288,14 @@ namespace Test_Assistant
         /// 
 
 
-        public async void PerformOrderClicksAsync(TestcaseData testcase)
-        {
-            if (testcase == null)
-            {
-                MessageBox.Show("Invalid data");
-                return;
-            }
-            var specialActions = fileData.SpecialActions.Where(p => p.testCaseId == testcase.id).ToList();
-            List<int> specialActionsIds = new List<int>();
-            if (specialActions != null)
-                specialActionsIds = specialActions.Select(p => p.testCaseActionId).ToList();
 
-            for (int i = 0; i < testcase.actions.Count; i++)
-            {
-                MouseClickAt(testcase.actions[i].x, testcase.actions[i].y);
-                await Task.Delay(testcase.actions[i].t * 1000);
-
-                if (specialActionsIds.Contains(testcase.id))
-                {
-                    var specialAction = specialActions.FirstOrDefault(p => p.testCaseActionId == testcase.id);
-                    if (specialAction != null)
-                    {
-                        switch (specialAction.actionName)
-                        {
-                            case "Photo":
-                                _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
-                                break;
-                            case "Parse":
-                                var tempPath = _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
-                                _ImageProcessor.ParseImage(tempPath);
-                                break;
-                            default: break;
-                        }
-                    }
-                }
-            }
-
-            //TakeScreenshot();
-            _instanceForm1.WindowState = FormWindowState.Normal;
-        }
-
-        static void MouseClickAt(int x, int y)
-        {
-            var inputs = new Input[3];
-
-            // Move the mouse to the specified coordinates
-            inputs[0] = new Input
-            {
-                Type = InputMouse,
-                Data = new MouseInput
-                {
-                    X = x * 65535 / GetSystemMetrics(0), // Scale X to absolute coordinates
-                    Y = y * 65535 / GetSystemMetrics(1), // Scale Y to absolute coordinates
-                    Flags = MouseEventMove | MouseEventAbsolute
-                }
-            };
-
-            // Mouse down
-            inputs[1] = new Input
-            {
-                Type = InputMouse,
-                Data = new MouseInput
-                {
-                    Flags = MouseEventLeftDown
-                }
-            };
-
-            // Mouse up
-            inputs[2] = new Input
-            {
-                Type = InputMouse,
-                Data = new MouseInput
-                {
-                    Flags = MouseEventLeftUp
-                }
-            };
-
-            // Send the inputs
-            SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
-        }
+        
 
         
         private void testBtn_Click(object sender, EventArgs e) // TODO : Remove this method
         {
-            var bitmap = _ImageProcessor.TakeScreenshot(0, 0, 200, 100);
-            string text = _ImageProcessor.ParseImage(bitmap);
+            var path = _ImageProcessor.TakeScreenshot(0, 0, 200, 100);
+            string text = _ImageProcessor.ParseImage(path);
             MessageBox.Show(text);
 
         }
