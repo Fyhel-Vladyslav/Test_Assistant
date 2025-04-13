@@ -10,6 +10,7 @@ namespace Test_Assistant.Processors
 {
     public class FileDataProcessor
     {
+        private readonly string debugFile = ".\\debug.json";
         private readonly string orderFilePath = ".\\order.json";
         private string lastTestCasefilePath = ".\\lastTestCaseFile.json";
         public FileDataProcessor()
@@ -62,6 +63,25 @@ namespace Test_Assistant.Processors
             }
         }
 
+        public void AddSpecialActionToLastTestCaseFile(SpecialAction specialAction)
+        {
+            try
+            {
+                var lastTestCase = GetLastTestCase();
+                if (lastTestCase.actions == null)
+                    lastTestCase.actions = new List<TestCaseAction>();
+
+                if (!lastTestCase.actions.Any())
+                    lastTestCase.actions.Add(new TestCaseAction());
+
+                lastTestCase.actions.Last().specialActionId = specialAction.id;
+                File.WriteAllText(lastTestCasefilePath, JsonConvert.SerializeObject(lastTestCase, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving last test case: {ex.Message}");
+            }
+        }
         public TestCaseData GetLastTestCase()
         {
             if (File.Exists(lastTestCasefilePath))

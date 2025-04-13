@@ -72,7 +72,7 @@ namespace Test_Assistant.Processors
                         }
                         else
                         {
-                            _worksheet.Cell(lastRow, 5).Value = "failed";
+                            _worksheet.Cell(lastRow, 5).Value = "failed"; 
                             _worksheet.Cell(lastRow, 5).Style.Fill.BackgroundColor = XLColor.LightCoral;
                             isSuccess = false;
                         }

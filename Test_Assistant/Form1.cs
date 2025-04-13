@@ -211,8 +211,7 @@ namespace Test_Assistant
             //var path = _imageProcessor.TakeScreenshot(0, 0, 200, 100);
             //string text = _imageProcessor.ParseImage(path);
             //MessageBox.Show(text);
-
-            _mouseAndKeyboardProcessor.StartRecording();
+            fileDataProcessor.AddSpecialActionToLastTestCaseFile(new SpecialAction { id=99, path="da"});
         }
 
         private void actionsToolStripMenuItem_Click(object sender, EventArgs e)
