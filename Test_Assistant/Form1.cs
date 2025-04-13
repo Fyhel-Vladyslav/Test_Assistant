@@ -76,8 +76,8 @@ namespace Test_Assistant
 
             CreateLayoutElements();
             ActionsPanel.Visible = false; //// TEST TEST TEST
-            ListPanel.Visible = false;
-            CasesPanel.Visible = true;
+            ListPanel.Visible = true;
+            CasesPanel.Visible = false;
 
             //Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);

@@ -14,7 +14,7 @@ namespace Test_Assistant.pages
         private ListPage _thisLink;
         private FileData _fileData;
         private ConfirmDelete _confirmDelete = new ConfirmDelete();
-        private int deleteButtonsWidth = 140;
+        private int deleteButtonsWidth = 220;
         public ListPage(FileData fileData)
         {
             _thisLink = this;
@@ -54,6 +54,27 @@ namespace Test_Assistant.pages
 
                     // -------------------------------------------------------
 
+                    var _comboBox = new ComboBox()
+                    {
+                        Location = new Point(50, 50),
+                        Text = "Add item",
+                        Font = new Font("Arial", 10, FontStyle.Bold),
+                        Dock = DockStyle.Right,
+                        Width = 100,
+                        Tag = checklist.id
+                    };
+                    //_comboBox.Click += _deleteButton_Click;
+
+                    _comboBox.Items.AddRange(_fileData.Testcases.Select(x => $"{x.name}_{x.id}").ToArray());
+                    _comboBox.SelectionChangeCommitted += _comboBox_SelectionChangeCommitted;
+
+
+
+
+                    _thisLink.Controls.Add(_comboBox);
+
+
+
                     var _deleteButton = new Button
                     {
                         Location = new Point(50, 50),
@@ -79,6 +100,8 @@ namespace Test_Assistant.pages
                 }
             }
 
+
+
             var _addButton = new Button
             {
                 Text = "Create new testcase order",
@@ -95,6 +118,34 @@ namespace Test_Assistant.pages
 
             _thisLink.Controls.Add(_addButton);
 
+        }
+
+        private void RefreshPage()
+        {
+            _thisLink.Controls.Clear();
+            CreateComponents();
+        }
+        private void _comboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var combobox = (ComboBox)sender;
+            string selected = combobox.SelectedItem.ToString();
+
+            if (selected == null)
+                return;
+
+            var orderListId = (int)combobox.Tag;
+            // Extract ID after the last underscore
+            int lastUnderscore = selected.LastIndexOf('_');
+            if (lastUnderscore != -1 && int.TryParse(selected.Substring(lastUnderscore + 1), out int testCaseId))
+            {
+                _fileData.OrderLists.FirstOrDefault(p => p.id == orderListId).caseIds.Add(testCaseId);
+
+                // Remove the selected item from the ComboBox
+                combobox.SelectedIndex = -1;
+                combobox.Text = "Add item";
+
+                RefreshPage();
+            }
         }
         private void _deleteButton_Click(object sender, EventArgs e)
         {

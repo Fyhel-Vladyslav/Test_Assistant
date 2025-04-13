@@ -90,9 +90,10 @@ namespace Test_Assistant.pagesModels
                     var runButton = new Button();
                     runButton.Text = "Run";
                     runButton.Font = new Font("Arial", 12, FontStyle.Bold);
+                    runButton.Tag = checkList.id;
                     runButton.Dock = DockStyle.Right;
                     runButton.BackColor = Color.LightGreen;
-                    //runButton.Click += (s, e) => PerformOrderClicksAsync(_fileData.Testcases.FirstOrDefault(p => p.id == checkList.testCaseId));
+                    runButton.Click += (s, e) => buttonStartOrder_Click(s, e, checkList.id);
                     
                     card.Controls.Add(browseButton);
                     card.Controls.Add(runButton);
@@ -119,14 +120,22 @@ namespace Test_Assistant.pagesModels
             Console.WriteLine(result); // <-- For debugging use.
             return newPath;
         }
-        private void buttonStartOrder_Click(object sender, EventArgs e)
+        private void buttonStartOrder_Click(object sender, EventArgs e, int orderListId)
         {
             _instanceForm1.WindowState = FormWindowState.Minimized;
 
-
-            if (_fileData.Testcases != null)
+            
+            if (_fileData.OrderLists != null)
             {
-                PerformOrderClicksAsync(_fileData.Testcases[0]);
+                var orderList = _fileData.OrderLists.FirstOrDefault(p => p.id == orderListId);
+                if (orderList != null)
+                {
+                    //var testCases = _fileData.Testcases.Where(p => orderList.caseIds.Contains(p.id)).ToList();
+                    foreach (var testCaseId in orderList.caseIds)
+                    {
+                        PerformOrderClicksAsync(_fileData.Testcases[testCaseId]);
+                    }
+                }
             }
         }
         public async void PerformOrderClicksAsync(TestCaseData testcase)
@@ -167,6 +176,8 @@ namespace Test_Assistant.pagesModels
             }
 
             //TakeScreenshot();
+
+            //TODO: move this so that window will be opened after all testcases
             _instanceForm1.WindowState = FormWindowState.Normal;
         }
         private static void MouseClickAt(int x, int y)
