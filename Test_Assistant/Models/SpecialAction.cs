@@ -12,7 +12,7 @@ namespace Test_Assistant.Models
         public string actionName { get; set; }
 
         public int testCaseId { get; set; }
-        public int testCaseActionId { get; set; }
+        //public int afterTestCaseActionId { get; set; }
 
         public int xAreaStart { get; set; }
         public int yAreaStart { get; set; }

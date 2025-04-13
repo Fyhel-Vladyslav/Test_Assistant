@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Test_Assistant.Models
 {
-    public class SpecialActionListElement : ListBox
+    public class SpecialActionListElement : ComboBox
     {
         public SpecialActionListElement(string selectedItem = "")
         {
+            DropDownStyle = ComboBoxStyle.DropDownList;
             Width = 70;
             Height = 40;
             Margin = new Padding(5);

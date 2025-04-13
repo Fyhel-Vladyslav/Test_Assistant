@@ -125,7 +125,7 @@ namespace Test_Assistant
                         if (_fileData != null)
                         {
                             var testCase = _fileDataProcessor.GetLastTestCase();
-                            testCase.id = _fileData.Testcases.Last().id + 1;
+                            testCase.id = _fileData.Testcases.Any()? _fileData.Testcases.Last().id + 1 : 0;
                             _fileData.Testcases.Add(testCase);
                         }
 

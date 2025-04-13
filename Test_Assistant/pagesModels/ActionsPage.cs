@@ -145,19 +145,16 @@ namespace Test_Assistant.pagesModels
                 MessageBox.Show("Invalid data");
                 return;
             }
-            var specialActions = _fileData.SpecialActions.Where(p => p.testCaseId == testcase.id).ToList();
-            List<int> specialActionsIds = new List<int>();
-            if (specialActions != null)
-                specialActionsIds = specialActions.Select(p => p.testCaseActionId).ToList();
 
             for (int i = 0; i < testcase.actions.Count; i++)
             {
-                MouseClickAt(testcase.actions[i].x, testcase.actions[i].y);
-                await Task.Delay(testcase.actions[i].t * 1000);
+                var testCaseAction = testcase.actions[i];
+                MouseClickAt(testCaseAction.x, testCaseAction.y); // Clicking simulating
+                await Task.Delay(testCaseAction.t * 1000);
 
-                if (specialActionsIds.Contains(testcase.id))
+                if (testCaseAction.specialActionId != 0)
                 {
-                    var specialAction = specialActions.FirstOrDefault(p => p.testCaseActionId == testcase.id);
+                    var specialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == testCaseAction.specialActionId);
                     if (specialAction != null)
                     {
                         switch (specialAction.actionName)

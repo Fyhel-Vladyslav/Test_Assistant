@@ -61,7 +61,7 @@ namespace Test_Assistant.pages
                         Font = new Font("Arial", 10, FontStyle.Bold),
                         Dock = DockStyle.Right,
                         Width = 100,
-                        Tag = checklist.id
+                        Tag = checklist.id,
                     };
                     //_comboBox.Click += _deleteButton_Click;
 
@@ -156,8 +156,7 @@ namespace Test_Assistant.pages
             {
                 _fileData.OrderLists.Remove(_fileData.OrderLists.First(p => p.id == id));
 
-                _thisLink.Controls.Clear();
-                CreateComponents();
+                RefreshPage();
             }
         }
         private void _addButton_Click(object sender, EventArgs e)
@@ -174,8 +173,7 @@ namespace Test_Assistant.pages
 
                 _fileData.OrderLists.Add(orderList);
 
-                _thisLink.Controls.Clear();
-                CreateComponents();
+                RefreshPage();
         }
     }
 }
