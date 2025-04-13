@@ -8,7 +8,7 @@ namespace Test_Assistant.Enums
 {
     public enum WindowParamethers
     {
-        TotalWidth = 850,
+        TotalWidth = 870,
         TotalHeight = 400,
         BottomLayoutHeight = 130,
     }

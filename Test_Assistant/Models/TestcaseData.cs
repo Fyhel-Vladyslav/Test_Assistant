@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test_Assistant.Models
 {
-    public class TestcaseData
+    public class TestCaseData
     {
         public int id { get; set; }
         public string name { get; set; }

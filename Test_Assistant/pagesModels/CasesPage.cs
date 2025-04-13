@@ -9,11 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.Design.AxImporter;
+using Test_Assistant.Processors;
 
 namespace Test_Assistant.pages
 {
-    public class CasesPage: FlowLayoutPanel
+    public class CasesPage : FlowLayoutPanel
     {
+        private MouseAndKeyboardProcessor _mouseAndKeyboardProcessor;
         private FileData _fileData;
         private CasesPage _thisLink;
         private ConfirmDelete _confirmDelete = new ConfirmDelete();
@@ -21,23 +23,24 @@ namespace Test_Assistant.pages
 
         private class ActionPanelElemnt : FlowLayoutPanel
         {
-            public ActionPanelElemnt(TestCaseAction action=null)
+            public ActionPanelElemnt(TestCaseAction action = null)
             {
 
                 WrapContents = true;
-                AutoSize= true;
+                AutoSize = true;
                 Margin = new Padding(5);
                 BackColor = Color.LightSkyBlue;
                 Dock = DockStyle.Bottom;
 
-                Controls.Add(new TextBox{Width = 40,Margin = new Padding(3),Text = action?.x.ToString()});
+                Controls.Add(new TextBox { Width = 40, Margin = new Padding(3), Text = action?.x.ToString() });
                 Controls.Add(new TextBox { Width = 40, Margin = new Padding(3), Text = action?.y.ToString() });
                 Controls.Add(new TextBox { Width = 40, Margin = new Padding(12, 3, 3, 3), Text = action?.t.ToString() });
             }
         }
 
-        public CasesPage(FileData fileData)
+        public CasesPage(FileData fileData, MouseAndKeyboardProcessor mouseAndKeyboardProcessor)
         {
+            _mouseAndKeyboardProcessor = mouseAndKeyboardProcessor;
             _fileData = fileData;
             _thisLink = this;
             Width = (int)WindowParamethers.TotalWidth;
@@ -66,7 +69,7 @@ namespace Test_Assistant.pages
                     var testCaseElement = new FlowLayoutPanel
                     {
                         Tag = testCase.id,
-                        Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth,
+                        Width = (int)WindowParamethers.TotalWidth - deleteButtonsWidth,
                         Height = 100,
                         TabIndex = testCase.id,
                         FlowDirection = FlowDirection.LeftToRight,
@@ -81,19 +84,23 @@ namespace Test_Assistant.pages
                     {
                         ActionPanelElemnt actionPanel = new ActionPanelElemnt(action);
 
-                        var fileSpecialAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseActionId == j && p.testCaseId == i);
+                        var fileSpecialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == action.specialActionId);
                         var newSpecAction = new SpecialActionListElement(fileSpecialAction != null ? fileSpecialAction.actionName : null);
                         newSpecAction.TabIndex = _fileData.Testcases[i].id;
-                        newSpecAction.DoubleClick += (sender, e) =>
+                        newSpecAction.MouseDown += (sender, e) =>
                         {
-                            if (newSpecAction.SelectedItem == null) return;
-
-                            string selectedText = newSpecAction.SelectedItem.ToString();
-                            EditSpecialActionPageForm editForm = new EditSpecialActionPageForm(fileSpecialAction);
-
-                            if (editForm.ShowDialog() != DialogResult.OK)
+                            if (e.Button == MouseButtons.Right)
                             {
-                                MessageBox.Show("Entered Data were lost");
+                                if (newSpecAction.SelectedItem != null && newSpecAction.SelectedItem != "")
+                                { 
+                                    string selectedText = newSpecAction.SelectedItem.ToString();
+                                    EditSpecialActionPageForm editForm = new EditSpecialActionPageForm(fileSpecialAction);
+
+                                    if (editForm.ShowDialog() != DialogResult.OK)
+                                    {
+                                        MessageBox.Show("Entered Data were lost");
+                                    }
+                                }
                             }
                         };
 
@@ -151,7 +158,7 @@ namespace Test_Assistant.pages
                 Dock = DockStyle.Bottom,
                 Height = 40,
                 Margin = new Padding(5),
-                Width = (int)WindowParamethers.TotalWidth- deleteButtonsWidth
+                Width = (int)WindowParamethers.TotalWidth - deleteButtonsWidth
             };
             _addButton.Click += _addButton_Click;
 
@@ -230,11 +237,12 @@ namespace Test_Assistant.pages
         {
             if (_confirmDelete.CallWindow("Do you want to start recording actions now?"))
             {
-
+                if (_mouseAndKeyboardProcessor != null)
+                    _mouseAndKeyboardProcessor.StartRecording();
             }
             else
             {
-                var TestcaseLine = new TestcaseData
+                var TestcaseLine = new TestCaseData
                 {
                     id = 0,
                     actions = new List<TestCaseAction>(),
@@ -253,57 +261,63 @@ namespace Test_Assistant.pages
         {
             foreach (var testCaseElement in Controls)
             {
-                if (testCaseElement is FlowLayoutPanel testCase)
+                if (testCaseElement is FlowLayoutPanel testCasePanel)
                 {
-                    var testCaseId = (int)testCase.Tag;
-                    var actions = testCase.Controls.OfType<ActionPanelElemnt>().ToList();
-                    var specialActions = testCase.Controls.OfType<SpecialActionListElement>().ToList();
+                    var testCasePanelId = (int)testCasePanel.Tag;
+                    var fileTestCase = _fileData.Testcases[testCasePanelId];
+                    var actions = testCasePanel.Controls.OfType<ActionPanelElemnt>().ToList();
+                    var panelSpecialActions = testCasePanel.Controls.OfType<SpecialActionListElement>().ToList();
                     for (int j = 0; j < actions.Count; j++)
                     {
                         var tableAction = actions[j];
 
-                        _fileData.Testcases[testCaseId].actions[j].x = int.Parse(tableAction.Controls[0].Text);
-                        _fileData.Testcases[testCaseId].actions[j].y = int.Parse(tableAction.Controls[1].Text);
-                        _fileData.Testcases[testCaseId].actions[j].t = int.Parse(tableAction.Controls[2].Text);
-                    }
-
-                    foreach (var tableSpecialAction in specialActions)
-                    {
-                        if (tableSpecialAction.SelectedItem != null)
+                        if (tableAction != null)
                         {
-                            if (_fileData.SpecialActions.Count > 0)
+                            var fileAction = fileTestCase.actions[j];
+                            fileAction.x = int.Parse(tableAction.Controls[0].Text);
+
+                            fileAction.y = int.Parse(tableAction.Controls[1].Text);
+                            fileAction.t = int.Parse(tableAction.Controls[2].Text);
+
+                            var specialActionsElement = panelSpecialActions[j];
+
+                            if (specialActionsElement != null)
                             {
-                                var fileAction = _fileData.SpecialActions.FirstOrDefault(p => p.testCaseId == testCaseId && p.testCaseActionId == tableSpecialAction.TabIndex);
-                                if (fileAction != null)
+                                var newValue = specialActionsElement.SelectedItem;
+                                var fileSpecialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == fileAction.specialActionId);
+
+                                if (newValue == null || newValue == "")//if newValue is empty
                                 {
-                                    fileAction.actionName = tableSpecialAction.SelectedItem.ToString();
-                                }
-                                else
-                                    _fileData.SpecialActions.Add(new SpecialAction
+                                    if (fileSpecialAction != null)//if it really realy exist
                                     {
-                                        id = _fileData.SpecialActions.Max(x => x.id) + 1,
-                                        actionName = tableSpecialAction.SelectedItem.ToString(),
-                                        testCaseId = testCaseId,
-                                        testCaseActionId = tableSpecialAction.TabIndex,
-                                    });
-                            }
-                            else
-                            {
-                                _fileData.SpecialActions.Add(
-                                    new SpecialAction
-                                    {
-                                        id = 1,
-                                        actionName = tableSpecialAction.SelectedItem.ToString(),
-                                        testCaseId = testCaseId,
-                                        testCaseActionId = tableSpecialAction.TabIndex,
+                                        _fileData.SpecialActions.Remove(fileSpecialAction);
+                                        fileAction.specialActionId = 0;
                                     }
-                                );
+                                }
+                                else //if newValue == something
+                                {
+                                    if (fileSpecialAction == null)// wasn't created yet
+                                    {
+                                        _fileData.SpecialActions.Add(new SpecialAction
+                                        {
+                                            id = _fileData.SpecialActions.Any() ? _fileData.SpecialActions.Last().id + 1 : 1,
+                                            actionName = newValue.ToString(),
+                                            //TODO: save initialvalues for Special action fields
+                                        });
+                                        fileAction.specialActionId = _fileData.SpecialActions.Last().id;
+                                    }
+                                    else // was already created
+                                        fileSpecialAction.actionName = newValue.ToString();
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
+
+
         private void CreateTestCaseButtonClick(int i, FileData fileData, FlowLayoutPanel testCaseElement, Button addButton)
         {
             addButton.Click += (sender, e) =>

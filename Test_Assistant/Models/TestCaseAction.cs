@@ -11,5 +11,7 @@ namespace Test_Assistant.Models
         public int x { get; set; }
         public int y { get; set; }
         public int t { get; set; }
+
+        public int specialActionId{ get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Test_Assistant.Models
     public class FileData
     {
         public List<OrderList> OrderLists  { get; set; }
-        public List<TestcaseData> Testcases { get; set; }
+        public List<TestCaseData> Testcases { get; set; }
         public List<SpecialAction> SpecialActions { get; set; }
     }
 }
