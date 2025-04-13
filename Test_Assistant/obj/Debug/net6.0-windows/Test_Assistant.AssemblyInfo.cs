@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Test_Assistant")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51419ffafd1af5b59d44f7988f82bd62486e7388")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d79f00cdb1b83861f07d4f0c18dba9bb838a8a50")]
 [assembly: System.Reflection.AssemblyProductAttribute("Test_Assistant")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Test_Assistant")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

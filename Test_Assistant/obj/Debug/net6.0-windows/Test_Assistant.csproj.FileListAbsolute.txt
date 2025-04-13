@@ -25,3 +25,11 @@ D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Ass.4D0D1B4F.Up2Date
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.sourcelink.json
 D:\visualStudio\Projects\Test_Assistant\Test_Assistant\obj\Debug\net6.0-windows\Test_Assistant.pagesModels.ScreenSelection.resources
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\ClosedXML.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\ClosedXML.Parser.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.Framework.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\RBush.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+D:\visualStudio\Projects\Test_Assistant\Test_Assistant\bin\Debug\net6.0-windows\System.IO.Packaging.dll

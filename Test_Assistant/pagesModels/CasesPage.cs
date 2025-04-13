@@ -87,16 +87,20 @@ namespace Test_Assistant.pages
                         var fileSpecialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == action.specialActionId);
                         var newSpecAction = new SpecialActionListElement(fileSpecialAction != null ? fileSpecialAction.actionName : null);
                         newSpecAction.TabIndex = _fileData.Testcases[i].id;
-                        newSpecAction.DoubleClick += (sender, e) =>
+                        newSpecAction.MouseDown += (sender, e) =>
                         {
-                            if (newSpecAction.SelectedItem == null) return;
-
-                            string selectedText = newSpecAction.SelectedItem.ToString();
-                            EditSpecialActionPageForm editForm = new EditSpecialActionPageForm(fileSpecialAction);
-
-                            if (editForm.ShowDialog() != DialogResult.OK)
+                            if (e.Button == MouseButtons.Right)
                             {
-                                MessageBox.Show("Entered Data were lost");
+                                if (newSpecAction.SelectedItem != null && newSpecAction.SelectedItem != "")
+                                { 
+                                    string selectedText = newSpecAction.SelectedItem.ToString();
+                                    EditSpecialActionPageForm editForm = new EditSpecialActionPageForm(fileSpecialAction);
+
+                                    if (editForm.ShowDialog() != DialogResult.OK)
+                                    {
+                                        MessageBox.Show("Entered Data were lost");
+                                    }
+                                }
                             }
                         };
 

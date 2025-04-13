@@ -7,44 +7,28 @@
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\processors\\exelfileprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\processors\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\processors\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\processors\\filedataprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\processors\\filedataprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\actionspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\actionspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\listpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\listpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\processors\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\processors\\imageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\pagesmodels\\casespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\pagesmodels\\casespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\models\\testcaseaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\models\\testcaseaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\models\\specialaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\models\\specialaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\enums\\windowparamethers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\enums\\windowparamethers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|D:\\visualStudio\\Projects\\Test_Assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|d:\\visualstudio\\projects\\test_assistant\\test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B3AF05D-F500-4917-9132-7AD619495293}|Test_Assistant\\Test_Assistant.csproj|solutionrelative:test_assistant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,20 +38,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
               "RelativeToolTip": "Test_Assistant\\Form1.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAwEUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAQwHsAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T18:59:05.653Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Program.cs",
+              "RelativeDocumentMoniker": "Test_Assistant\\Program.cs",
+              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Program.cs",
+              "RelativeToolTip": "Test_Assistant\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAewA0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T18:15:08.743Z",
               "EditorCaption": ""
             },
             {
@@ -78,64 +75,40 @@
               "RelativeDocumentMoniker": "Test_Assistant\\Processors\\ExelFileProcessor.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Processors\\ExelFileProcessor.cs",
               "RelativeToolTip": "Test_Assistant\\Processors\\ExelFileProcessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAjwD8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T16:19:03.85Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ImageProcessor.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Processors\\ImageProcessor.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Processors\\ImageProcessor.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Processors\\ImageProcessor.cs",
               "RelativeToolTip": "Test_Assistant\\Processors\\ImageProcessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwAcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T16:12:31.879Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ListPage.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ListPage.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ListPage.cs",
-              "RelativeToolTip": "Test_Assistant\\pagesModels\\ListPage.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwEgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T14:32:08.516Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ActionsPage.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ActionsPage.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\ActionsPage.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\ActionsPage.cs",
               "RelativeToolTip": "Test_Assistant\\pagesModels\\ActionsPage.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAIAwwKIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAADwvycAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T14:08:36.178Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TestCaseAction.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\TestCaseAction.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\Models\\TestCaseAction.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\TestCaseAction.cs",
-              "RelativeToolTip": "Test_Assistant\\Models\\TestCaseAction.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:17:55.098Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "SpecialAction.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Models\\SpecialAction.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\Models\\SpecialAction.cs",
@@ -143,56 +116,21 @@
               "RelativeToolTip": "Test_Assistant\\Models\\SpecialAction.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAYwA0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T12:54:37.36Z"
+              "WhenOpened": "2025-04-13T12:54:37.36Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "CasesPage.cs",
               "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\CasesPage.cs",
               "RelativeDocumentMoniker": "Test_Assistant\\pagesModels\\CasesPage.cs",
               "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\pagesModels\\CasesPage.cs",
               "RelativeToolTip": "Test_Assistant\\pagesModels\\CasesPage.cs",
-              "ViewState": "AgIAAAwBAAAAAAAAAAAqwCsBAABgAAAAAAAAAA==",
+              "ViewState": "AgIAAE8AAAAAAAAAAADwv2YAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-12T21:17:52.36Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FileDataProcessor.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Processors\\FileDataProcessor.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\Processors\\FileDataProcessor.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Processors\\FileDataProcessor.cs",
-              "RelativeToolTip": "Test_Assistant\\Processors\\FileDataProcessor.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwCYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T21:15:40.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "WindowParamethers.cs",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Enums\\WindowParamethers.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\Enums\\WindowParamethers.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Enums\\WindowParamethers.cs",
-              "RelativeToolTip": "Test_Assistant\\Enums\\WindowParamethers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T18:13:58.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs",
-              "RelativeDocumentMoniker": "Test_Assistant\\Form1.cs",
-              "ToolTip": "D:\\visualStudio\\Projects\\Test_Assistant\\Test_Assistant\\Form1.cs [Design]",
-              "RelativeToolTip": "Test_Assistant\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T19:18:08.255Z"
             }
           ]
         }

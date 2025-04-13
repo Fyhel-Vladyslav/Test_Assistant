@@ -31,6 +31,9 @@ namespace Test_Assistant.pagesModels
         private Form1 _instanceForm1;
         private FileData _fileData;
         private static ImageProcessor _ImageProcessor;
+        private ExelFileProcessor _exelFileProcessor;
+        private string _exelFilePath = ".\\checkLists";
+
         public ActionsPage(Form1 instanceForm1, FileData fileData)
         {
             _instanceForm1 = instanceForm1;
@@ -121,26 +124,28 @@ namespace Test_Assistant.pagesModels
             Console.WriteLine(result); // <-- For debugging use.
             return newPath;
         }
-        private void buttonStartOrder_Click(object sender, EventArgs e, int orderListId)
+        private async void buttonStartOrder_Click(object sender, EventArgs e, int orderListId)
         {
             _instanceForm1.WindowState = FormWindowState.Minimized;
 
-            
             if (_fileData.OrderLists != null)
             {
                 var orderList = _fileData.OrderLists.FirstOrDefault(p => p.id == orderListId);
                 if (orderList != null)
                 {
-                    //var testCases = _fileData.Testcases.Where(p => orderList.caseIds.Contains(p.id)).ToList();
+                    _exelFileProcessor = new ExelFileProcessor(_fileData, orderList.name, exelFilePath: _exelFilePath);
                     foreach (var testCaseId in orderList.caseIds)
                     {
-                        PerformOrderClicksAsync(_fileData.Testcases[testCaseId]);
+                        await PerformOrderClicksAsync(_fileData.Testcases[testCaseId]);
                     }
+                    _exelFileProcessor.SaveExelFile();
+                    _instanceForm1.WindowState = FormWindowState.Normal;
                 }
             }
         }
-        public async void PerformOrderClicksAsync(TestCaseData testcase)
+        public async Task PerformOrderClicksAsync(TestCaseData testcase)
         {
+
             if (testcase == null)
             {
                 MessageBox.Show("Invalid data");
@@ -158,25 +163,23 @@ namespace Test_Assistant.pagesModels
                     var specialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == testCaseAction.specialActionId);
                     if (specialAction != null)
                     {
-                        switch (specialAction.actionName)
+                        string pathToImage = string.Empty;
+                        string actualResultValue = string.Empty;
+
+                        actualResultValue = "1";
+
+                        if (_exelFileProcessor != null)
                         {
-                            case "Photo":
-                                _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
-                                break;
-                            case "Parse":
-                                var tempPath = _ImageProcessor.TakeScreenshot(specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
-                                _ImageProcessor.ParseImage(tempPath);
-                                break;
-                            default: break;
+                            _exelFileProcessor.AddTestCaseLine(testcase, specialAction, actualResultValue, pathToImage);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Excel file processor is null");
+                            return;
                         }
                     }
                 }
             }
-
-            //TakeScreenshot();
-
-            //TODO: move this so that window will be opened after all testcases
-            _instanceForm1.WindowState = FormWindowState.Normal;
         }
         private static void MouseClickAt(int x, int y)
         {
