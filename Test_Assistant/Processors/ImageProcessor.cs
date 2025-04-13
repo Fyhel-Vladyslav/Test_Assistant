@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Tesseract;
 
 
-namespace Test_Assistant
+namespace Test_Assistant.Processors
 {
     public class ImageProcessor
     {

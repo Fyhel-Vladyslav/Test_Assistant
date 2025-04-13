@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Test_Assistant.Models;
 
-namespace Test_Assistant
+namespace Test_Assistant.Processors
 {
     public class MouseAndKeyboardProcessor
     {
@@ -64,11 +64,11 @@ namespace Test_Assistant
         private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         /// </MOUSE_AND_KEYBOARD_HOOK_VARIABLES>
-        
+
         /// <HOOK_LOGISTIC>
         private static IntPtr SetMouseHook(LowLevelMouseProc proc)
         {
-            using (var currentProcess = System.Diagnostics.Process.GetCurrentProcess())
+            using (var currentProcess = Process.GetCurrentProcess())
             using (var currentModule = currentProcess.MainModule)
             {
                 return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(currentModule.ModuleName), 0);
@@ -125,7 +125,7 @@ namespace Test_Assistant
                         if (_fileData != null)
                         {
                             var testCase = _fileDataProcessor.GetLastTestCase();
-                            testCase.id = _fileData.Testcases.Any()? _fileData.Testcases.Last().id + 1 : 0;
+                            testCase.id = _fileData.Testcases.Any() ? _fileData.Testcases.Last().id + 1 : 0;
                             _fileData.Testcases.Add(testCase);
                         }
 
@@ -137,7 +137,7 @@ namespace Test_Assistant
         }
 
         /// </HOOK_LOGISTIC>
-        
+
         public MouseAndKeyboardProcessor(Form1 instanceForm1, FileData fileData)
         {
             _instanceForm1 = instanceForm1;
@@ -154,7 +154,7 @@ namespace Test_Assistant
         //    _mouseHookID = SetMouseHook(_mouseProc);
         //    return _mouseHookID;
         //}        
-        
+
         //public IntPtr HookKeyboard()
         //{
         //    _keyboardHookID = SetKeyboardHook(KeyboardHookCallback);
@@ -163,7 +163,7 @@ namespace Test_Assistant
 
         public void UnhookAll()
         {
-            if(_mouseHookID != IntPtr.Zero)
+            if (_mouseHookID != IntPtr.Zero)
                 UnhookWindowsHookEx(_mouseHookID);
             if (_keyboardHookID != IntPtr.Zero)
                 UnhookWindowsHookEx(_keyboardHookID);
