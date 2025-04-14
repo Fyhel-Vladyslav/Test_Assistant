@@ -11,3 +11,7 @@ Release/
 .vs/**/*.db-shm
 .vs/**/*.db-wal
 /Test_Assistant/TempImages
+.vs/Test_Assistant/CopilotIndices/17.12.38.29086/SemanticSymbols.db-shm
+.vs/Test_Assistant/v17/.suo
+.vs/Test_Assistant/v17/DocumentLayout.backup.json
+.vs/Test_Assistant/v17/DocumentLayout.json
