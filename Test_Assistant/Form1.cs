@@ -42,8 +42,8 @@ namespace Test_Assistant
         private FileDataProcessor fileDataProcessor = new FileDataProcessor();
         private static FileData prevFileData;
         public static FileData fileData;
-        private static ImageProcessor _imageProcessor;
         private CasesPage casesPage;
+        private CheckListsPage listPage;
         private MouseAndKeyboardProcessor _mouseAndKeyboardProcessor;
 
         /// </LOGISTIC_VARIABLES>
@@ -56,7 +56,7 @@ namespace Test_Assistant
             
             fileData = fileDataProcessor.LoadDataFromFile();
             prevFileData = fileDataProcessor.LoadDataFromFile();
-            _imageProcessor = new ImageProcessor();
+            
 
 
             InitializeComponent();
@@ -149,7 +149,7 @@ namespace Test_Assistant
             }
 
             // Initialize the FlowLayoutPanel
-            ListPage listPage = new ListPage(fileData);
+            listPage = new CheckListsPage(fileData);
 
             ListPanel.Controls.Add(listPage);
         }
@@ -186,6 +186,7 @@ namespace Test_Assistant
         private void SaveButton_Click(object sender, EventArgs e)
         {
             casesPage.SaveAllToLocalData();
+            listPage.SaveAllToLocalData();
 
             fileDataProcessor.SaveDataToFile(fileData);
         }
@@ -211,7 +212,13 @@ namespace Test_Assistant
             //var path = _imageProcessor.TakeScreenshot(0, 0, 200, 100);
             //string text = _imageProcessor.ParseImage(path);
             //MessageBox.Show(text);
-            fileDataProcessor.AddSpecialActionToLastTestCaseFile(new SpecialAction { id=99, path="da"});
+            //fileDataProcessor.AddSpecialActionToLastTestCaseFile(new SpecialAction { id=99, path="da"});
+            //ImageProcessor _imageProcessor = new ImageProcessor(); ;
+            //_imageProcessor.TakeScreenshot(screenshotsFilePath, 0, 0,   500, 90);
+            var _exelFileProc = new ExelFileProcessor(fileData, "testcase", exelFilePath: ".\\checkLists");
+            _exelFileProc.AddTestCaseLine(fileData.Testcases[0], fileData.SpecialActions[0], "test", ".\\TempImages\\04-15_01-41-56.png");
+            _exelFileProc.SaveExelFile();
+
         }
 
         private void actionsToolStripMenuItem_Click(object sender, EventArgs e)

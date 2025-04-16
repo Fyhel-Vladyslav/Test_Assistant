@@ -125,12 +125,14 @@ namespace Test_Assistant.Processors
                         _globalTimer.Enabled = false;
                         elapsedPartialSeconds = 0;
 
-                        //TODO: Make this a promise to casePege to to saving
+                        //TODO: Make this a promise to casePege to saving
 
+                        
                         if (_fileData != null)
                         {
                             var testCase = _fileDataProcessor.GetLastTestCase();
                             testCase.id = _fileData.Testcases.Any() ? _fileData.Testcases.Last().id + 1 : 0;
+                            testCase.name = $"TestCase_{testCase.id}";
                             _fileData.Testcases.Add(testCase);
                         }
 

@@ -22,7 +22,7 @@
     <Compile Update="pagesModels\EditSpecialActionPageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="pagesModels\ListPage.cs">
+    <Compile Update="pagesModels\CheckListsPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="pagesModels\ScreenSelection.cs">

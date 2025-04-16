@@ -12,10 +12,9 @@ namespace Test_Assistant.Processors
 {
     public class ExelFileProcessor
     {
-        //private ExelFileData _exelData;
         private string _exelFilePath;
         private string _exelFileName;
-        private FileData _fileData;
+        private FileData _fileData; 
 
         private XLWorkbook _workbook;
         private IXLWorksheet _worksheet;
@@ -30,6 +29,17 @@ namespace Test_Assistant.Processors
             _worksheet = _workbook.Worksheets.Add("Sheet1");
 
             _worksheet.Cell(1, 1).Value = checkListName;
+            _worksheet.Cell(2, 1).Value = "№";
+            _worksheet.Cell(2, 2).Value = "name";
+            _worksheet.Cell(2, 3).Value = "expected result";
+            _worksheet.Cell(2, 4).Value = "actual result";
+            _worksheet.Cell(2, 5).Value = "status";
+            _worksheet.Cell(2, 6).Value = "comments";
+            _worksheet.Cell(2, 7).Value = "image";
+            _worksheet.Column(1).Width = 5;
+            _worksheet.Column(2).Width = 20;
+            _worksheet.Column(3).Width = 10;
+            _worksheet.Column(6).Width = 40;
 
         }
 
@@ -64,7 +74,7 @@ namespace Test_Assistant.Processors
                     {
                         _worksheet.Cell(lastRow, 3).Value = specialAction.comparedTo;
 
-                        if(specialAction.comparedTo == actualResult)
+                        if(string.Equals(specialAction.comparedTo ,actualResult) )
                         {
                             _worksheet.Cell(lastRow, 5).Value = "success";
                             _worksheet.Cell(lastRow, 5).Style.Fill.BackgroundColor = XLColor.LightGreen;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Test_Assistant.Enums;
 using Test_Assistant.Models;
 using Test_Assistant.Processors;
 using static System.Net.Mime.MediaTypeNames;
@@ -64,10 +65,10 @@ namespace Test_Assistant.pagesModels
                     var card = new Panel();
                     card.Width = 700;
                     card.Height = 50;
-                   // card.BackColor = Color.Red;
+                    // card.BackColor = Color.Red;
                     card.Margin = new Padding(10);
                     card.Padding = new Padding(10);
-                    card.BorderStyle = BorderStyle.FixedSingle;                   
+                    card.BorderStyle = BorderStyle.FixedSingle;
                     Controls.Add(card);
 
                     var label = new Label();
@@ -76,7 +77,6 @@ namespace Test_Assistant.pagesModels
                     label.Dock = DockStyle.Left;
                     label.Width = 200;
                     label.BorderStyle = BorderStyle.FixedSingle;
-
 
 
                     var exelFileName = new TextBox();
@@ -98,11 +98,13 @@ namespace Test_Assistant.pagesModels
                     runButton.Dock = DockStyle.Right;
                     runButton.BackColor = Color.LightGreen;
                     runButton.Click += (s, e) => buttonStartOrder_Click(s, e, checkList.id);
-                    
+
                     card.Controls.Add(browseButton);
                     card.Controls.Add(runButton);
                     card.Controls.Add(exelFileName);
                     card.Controls.Add(label);
+                    
+
                 }
             }
         }
@@ -118,7 +120,7 @@ namespace Test_Assistant.pagesModels
                 string enteredFileName = Path.GetFileName(exelFileNameTextBoxLink.Text);
                 if (string.IsNullOrEmpty(enteredFileName))
                     enteredFileName = $"CheckList_untitled_{DateTime.Now:MM-dd_HH-mm-ss}.xlsx";
-                
+
                 exelFileNameTextBoxLink.Text = $"{newPath}\\{enteredFileName}";
             }
             Console.WriteLine(result); // <-- For debugging use.
@@ -158,15 +160,35 @@ namespace Test_Assistant.pagesModels
                 MouseClickAt(testCaseAction.x, testCaseAction.y); // Clicking simulating
                 await Task.Delay(testCaseAction.t * 1000);
 
-                if (testCaseAction.specialActionId != 0)
+                if (testCaseAction.specialActionId != 0)// Special action performing
                 {
                     var specialAction = _fileData.SpecialActions.FirstOrDefault(p => p.id == testCaseAction.specialActionId);
                     if (specialAction != null)
                     {
-                        string pathToImage = string.Empty;
-                        string actualResultValue = string.Empty;
+                        string pathToImage = String.Empty;
+                        string actualResultValue = String.Empty;
 
-                        actualResultValue = "1";
+                        pathToImage = _ImageProcessor.TakeScreenshot(specialAction.path, specialAction.xAreaStart, specialAction.yAreaStart, specialAction.xAreaEnd, specialAction.yAreaEnd);
+
+                        if (String.IsNullOrEmpty(pathToImage))
+                        {
+                            MessageBox.Show("Error creating an image");
+                            return;
+                        }
+
+
+                        if (specialAction.actionName == SpecialActionsEnum.Photo.ToString())
+                        {
+                            actualResultValue = specialAction.comparedTo;
+                        }
+                        else if(specialAction.actionName == SpecialActionsEnum.Parse.ToString())
+                        {
+                            actualResultValue = _ImageProcessor.ParseImage(pathToImage);
+                        }
+                        //else if (specialAction.actionName == SpecialActionsEnum.Pause.ToString())
+                        //{
+                        //    actualResultValue = "0";
+                        //}
 
                         if (_exelFileProcessor != null)
                         {

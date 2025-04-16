@@ -66,6 +66,15 @@ namespace Test_Assistant.pages
                 for (int i = 0; i < testCasesAmount; i++)
                 {
                     var testCase = _fileData.Testcases[i];
+
+                    var NameInput = new TextBox();
+                    NameInput.Tag = testCase.id;
+                    NameInput.Width = 330;
+                    NameInput.Text = testCase.name ?? $"Testcase_{i}";
+                    NameInput.Margin = new Padding(10);
+                    NameInput.Dock = DockStyle.Top;
+
+
                     var testCaseElement = new FlowLayoutPanel
                     {
                         Tag = testCase.id,
@@ -92,7 +101,7 @@ namespace Test_Assistant.pages
                             if (e.Button == MouseButtons.Right)
                             {
                                 if (newSpecAction.SelectedItem != null && newSpecAction.SelectedItem != "")
-                                { 
+                                {
                                     string selectedText = newSpecAction.SelectedItem.ToString();
                                     EditSpecialActionPageForm editForm = new EditSpecialActionPageForm(fileSpecialAction);
 
@@ -119,8 +128,11 @@ namespace Test_Assistant.pages
 
                     CreateTestCaseButtonClick(i, _fileData, testCaseElement, addButton);
 
+                    _thisLink.Controls.Add(NameInput);
+
                     testCaseElement.Controls.Add(addButton);
                     _thisLink.Controls.Add(testCaseElement);
+
 
 
                     var _deleteButton = new Button
@@ -250,7 +262,7 @@ namespace Test_Assistant.pages
                 if (_fileData.Testcases.Count() > 0)
                     TestcaseLine.id = _fileData.Testcases.Last().id + 1;
 
-                TestcaseLine.name = $"New OrderList{TestcaseLine.id}";
+                TestcaseLine.name = $"TestCase_{TestcaseLine.id}"; ;
 
                 _fileData.Testcases.Add(TestcaseLine);
 
@@ -311,6 +323,15 @@ namespace Test_Assistant.pages
                                 }
                             }
                         }
+                    }
+                }
+                if (testCaseElement is TextBox nameElement)
+                {
+                    var nameFileData = _fileData.Testcases.FirstOrDefault(x => x.id == (int)nameElement.Tag);
+                    if (nameFileData != null)
+                    {
+                        if (!String.IsNullOrEmpty(nameElement.Text))
+                        nameFileData.name = nameElement.Text;
                     }
                 }
             }
