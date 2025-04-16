@@ -111,6 +111,14 @@ namespace Test_Assistant.Processors
             }
             return CallNextHookEx(_mouseHookID, nCode, wParam, lParam);
         }
+        private static void NotifyTestCaseRecordingFinished()
+        {
+            _instanceForm1?.Invoke(new Action(() =>
+            {
+                _instanceForm1.OnTestCaseRecordingFinished();
+            }));
+        }
+
         private static IntPtr KeyboardHookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (isRecordingClicks)
@@ -118,16 +126,13 @@ namespace Test_Assistant.Processors
                 if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
                 {
                     var key = Marshal.ReadInt32(lParam);
-                    if (key  == VK_RETURN) // Enter key
+                    if (key == VK_RETURN) // Enter key  
                     {
                         isRecordingClicks = false;
                         _instanceForm1.WindowState = FormWindowState.Normal;
                         _globalTimer.Enabled = false;
                         elapsedPartialSeconds = 0;
 
-                        //TODO: Make this a promise to casePege to saving
-
-                        
                         if (_fileData != null)
                         {
                             var testCase = _fileDataProcessor.GetLastTestCase();
@@ -136,16 +141,16 @@ namespace Test_Assistant.Processors
                             _fileData.Testcases.Add(testCase);
                         }
 
+                        NotifyTestCaseRecordingFinished();
                     }
                     else if (key == VK_R || key == VK_P)
                     {
                         isRecordingClicks = false;
                         _globalTimer.Enabled = false;
 
-
                         var fileSpecialAction = new SpecialAction();
-                        fileSpecialAction.id = _fileData.SpecialActions.Any() ? _fileData.SpecialActions.Last().id + 1 : 0;
-                        if(key == VK_R)
+                        fileSpecialAction.id = _fileData.SpecialActions.Any() ? _fileData.SpecialActions.Last().id + 1 : 1;
+                        if (key == VK_R)
                             fileSpecialAction.actionName = SpecialActionsEnum.Parse.ToString();
                         else if (key == VK_P)
                             fileSpecialAction.actionName = SpecialActionsEnum.Photo.ToString();
@@ -168,7 +173,6 @@ namespace Test_Assistant.Processors
                 }
             }
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);
-
         }
 
         /// </HOOK_LOGISTIC>

@@ -32,7 +32,7 @@ namespace Test_Assistant.Processors
         {
             using (var engine = new TesseractEngine(@".\trainedDataLibs", "eng", EngineMode.Default))
             {
-                using (var img = Pix.LoadFromFile(imagePath))
+                using (var img = Pix.LoadFromFile(ConvertToBW(imagePath)))
                 {
                     using (var page = engine.Process(img))
                     {

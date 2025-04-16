@@ -51,7 +51,7 @@ namespace Test_Assistant.pages
             CreateComponents();
         }
 
-        private void RefreshPage()
+        public void RefreshPage()
         {
             _thisLink.Controls.Clear();
             CreateComponents();

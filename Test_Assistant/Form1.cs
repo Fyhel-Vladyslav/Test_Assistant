@@ -241,5 +241,14 @@ namespace Test_Assistant
             ListPanel.Visible = false;
             CasesPanel.Visible = true;
         }
+        /// <EVENMTS>
+        /// 
+
+        internal void OnTestCaseRecordingFinished()
+        {
+            casesPage.RefreshPage();
+        }
+        /// </EVENMTS>
+
     }
 }
